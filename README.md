@@ -1,3 +1,4 @@
+对DbContextScope进行进一步封装
 DbContextScope
 ==============
 
