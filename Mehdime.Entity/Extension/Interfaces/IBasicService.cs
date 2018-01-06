@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -8,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mehdime.Entity.Extension.Interfaces
 {
-    /// <summary>
-    /// 数据库操作的基本方法
-    /// 
-    /// </summary>
-    public interface IBaseDal<TEntity> where TEntity:class
+    public interface IBasicService<TEntity> where TEntity : class
     {
         /// <summary>  
         /// 将给定实体以“已添加”状态添加到集的基础上下文中，这样一来，
@@ -106,11 +101,6 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// <returns></returns>
         IQueryable<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize);
 
-        /// <summary>
-        /// 获取DbContext
-        /// </summary>
-        /// <returns></returns>
-        DbContext GetDbContext();
 
         //6.0  
         /// <summary>  
@@ -129,7 +119,7 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// context.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
         /// </summary>  
         /// <param name="sql">sql查询语句</param>  
-        IEnumerable<TEntity> SqlQuery(string sql);
+        IEnumerable<TEntity> SqlQuery(string sql, params object[] param);
 
 
         /// <summary>  
@@ -143,7 +133,7 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// </summary>  
         /// <param name="sql">查询语句</param>  
         /// <returns></returns>  
-        bool ExecuteSqlCommand(string sql);
+        bool ExecuteSqlCommand(string sql, params object[] param);
 
         /// <summary>  
         /// 重载。 确定序列的任何元素是否满足条件。 
@@ -166,6 +156,5 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// <param name="predicate">查询表达式</param>  
         /// <returns></returns>  
         int Count(Expression<Func<TEntity, bool>> predicate);
-
     }
 }

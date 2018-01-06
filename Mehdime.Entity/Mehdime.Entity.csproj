@@ -48,7 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\BaseDal.cs" />
+    <Compile Include="Extension\Implementations\BasicDal.cs" />
+    <Compile Include="Extension\Implementations\BasicService.cs" />
+    <Compile Include="Extension\Implementations\Entity.cs" />
+    <Compile Include="Extension\Interfaces\IBasicDal.cs" />
+    <Compile Include="Extension\Interfaces\IBasicService.cs" />
+    <Compile Include="Extension\Interfaces\IEntity.cs" />
     <Compile Include="Implementations\AmbientContextSuppressor.cs" />
     <Compile Include="Implementations\AmbientDbContextLocator.cs" />
     <Compile Include="Implementations\DbContextCollection.cs" />
@@ -71,13 +76,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

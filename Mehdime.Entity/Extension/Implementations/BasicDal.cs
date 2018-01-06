@@ -1,18 +1,15 @@
 ﻿using Mehdime.Entity.Extension.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
-using System.Linq.Expressions;
 
-namespace Mehdime.Entity.Base
+namespace Mehdime.Entity.Extension.Implementations
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public abstract class BaseDal<TEntity,TDbContext> : IBaseDal<TEntity> where TEntity : class where TDbContext:DbContext
+    public class BasicDal<TEntity, TDbContext> : IBasicDal<TEntity> where TEntity : class where TDbContext : DbContext
     {
         /// <summary>
         /// DbContext
@@ -79,9 +76,9 @@ namespace Mehdime.Entity.Base
         /// </summary>  
         /// <param name="sql">查询语句</param>  
         /// <returns></returns>  
-        public virtual bool ExecuteSqlCommand(string sql)
+        public virtual bool ExecuteSqlCommand(string sql, params object[] param)
         {
-            return context.Database.ExecuteSqlCommand(sql) > 0;
+            return context.Database.ExecuteSqlCommand(sql, param) > 0;
         }
 
         /// <summary>  
@@ -167,11 +164,6 @@ namespace Mehdime.Entity.Base
         }
 
 
-        public virtual DbContext GetDbContext()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// 删除
         /// </summary>
@@ -229,9 +221,9 @@ namespace Mehdime.Entity.Base
         /// context.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
         /// </summary>  
         /// <param name="sql">sql查询语句</param>  
-        public virtual IEnumerable<TEntity> SqlQuery(string sql)
+        public virtual IEnumerable<TEntity> SqlQuery(string sql, params object[] param)
         {
-            return context.Database.SqlQuery<TEntity>(sql);
+            return context.Database.SqlQuery<TEntity>(sql, param);
         }
 
 
