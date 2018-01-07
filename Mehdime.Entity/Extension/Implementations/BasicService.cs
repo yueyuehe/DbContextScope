@@ -14,14 +14,6 @@ namespace Mehdime.Entity.Extension.Implementations
         IDbContextScopeFactory _dbContextScopeFactory = new DbContextScopeFactory();
         IBasicDal<TEntity> basicDal = new BasicDal<TEntity, TDbContext>();
 
-        protected DbContext GetDbContext()
-        {
-            using (var dbContextScope = _dbContextScopeFactory.Create())
-            {
-                return dbContextScope.DbContexts.Get<TDbContext>();
-            }
-        }
-
         public virtual void Add(TEntity entity)
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
