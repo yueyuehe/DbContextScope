@@ -1,0 +1,836 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Authority.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AuthorityStoreContainer">
+    <EntitySet Name="User" EntityType="Authority.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="Authority.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Authority" EntityType="Authority.Store.Authority" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Group" EntityType="Authority.Store.Group" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Menu" EntityType="Authority.Store.Menu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="File" EntityType="Authority.Store.File" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PageElement" EntityType="Authority.Store.PageElement" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Action" EntityType="Authority.Store.Action" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GroupUser" EntityType="Authority.Store.GroupUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleUser" EntityType="Authority.Store.RoleUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GroupRole" EntityType="Authority.Store.GroupRole" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MenuAuthority" EntityType="Authority.Store.MenuAuthority" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FileAuthority" EntityType="Authority.Store.FileAuthority" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PageElementAuthority" EntityType="Authority.Store.PageElementAuthority" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ActionAuthority" EntityType="Authority.Store.ActionAuthority" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleAuthority" EntityType="Authority.Store.RoleAuthority" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_GroupUser_Group" Association="Authority.Store.FK_GroupUser_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="GroupUser" EntitySet="GroupUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupUser_User" Association="Authority.Store.FK_GroupUser_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="GroupUser" EntitySet="GroupUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleUser_Role" Association="Authority.Store.FK_RoleUser_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleUser" EntitySet="RoleUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleUser_User" Association="Authority.Store.FK_RoleUser_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RoleUser" EntitySet="RoleUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupRole_Group" Association="Authority.Store.FK_GroupRole_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="GroupRole" EntitySet="GroupRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupRole_Role" Association="Authority.Store.FK_GroupRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="GroupRole" EntitySet="GroupRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuAuthority_Menu" Association="Authority.Store.FK_MenuAuthority_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="MenuAuthority" EntitySet="MenuAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuAuthority_Authority" Association="Authority.Store.FK_MenuAuthority_Authority">
+      <End Role="Authority" EntitySet="Authority" />
+      <End Role="MenuAuthority" EntitySet="MenuAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileAuthority_File" Association="Authority.Store.FK_FileAuthority_File">
+      <End Role="File" EntitySet="File" />
+      <End Role="FileAuthority" EntitySet="FileAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FileAuthority_Authority" Association="Authority.Store.FK_FileAuthority_Authority">
+      <End Role="Authority" EntitySet="Authority" />
+      <End Role="FileAuthority" EntitySet="FileAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PageElementAuthority_PageElement" Association="Authority.Store.FK_PageElementAuthority_PageElement">
+      <End Role="PageElement" EntitySet="PageElement" />
+      <End Role="PageElementAuthority" EntitySet="PageElementAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PageElementAuthority_Authority" Association="Authority.Store.FK_PageElementAuthority_Authority">
+      <End Role="Authority" EntitySet="Authority" />
+      <End Role="PageElementAuthority" EntitySet="PageElementAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionAuthority_Action" Association="Authority.Store.FK_ActionAuthority_Action">
+      <End Role="Action" EntitySet="Action" />
+      <End Role="ActionAuthority" EntitySet="ActionAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ActionAuthority_Authority" Association="Authority.Store.FK_ActionAuthority_Authority">
+      <End Role="Authority" EntitySet="Authority" />
+      <End Role="ActionAuthority" EntitySet="ActionAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleAuthority_Role" Association="Authority.Store.FK_RoleAuthority_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleAuthority" EntitySet="RoleAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleAuthority_Authority" Association="Authority.Store.FK_RoleAuthority_Authority">
+      <End Role="Authority" EntitySet="Authority" />
+      <End Role="RoleAuthority" EntitySet="RoleAuthority" />
+    </AssociationSet>
+    <AssociationSet Name="GroupGroup" Association="Authority.Store.GroupGroup">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Group1" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="MenuMenu" Association="Authority.Store.MenuMenu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Menu1" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="UserUser" Association="Authority.Store.UserUser">
+      <End Role="User" EntitySet="User" />
+      <End Role="User1" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" Nullable="true" />
+    <Property Name="CreateUser_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Authority">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="1000" />
+    <Property Name="Parent_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Parent_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="FilePath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FileType" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PageElement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Action">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupUser">
+    <Key>
+      <PropertyRef Name="Group_Id" />
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="Group_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleUser">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupRole">
+    <Key>
+      <PropertyRef Name="Group_Id" />
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="Group_Id" Type="int" Nullable="false" />
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenuAuthority">
+    <Key>
+      <PropertyRef Name="Menu_Id" />
+      <PropertyRef Name="Authority_Id" />
+    </Key>
+    <Property Name="Menu_Id" Type="int" Nullable="false" />
+    <Property Name="Authority_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileAuthority">
+    <Key>
+      <PropertyRef Name="File_Id" />
+      <PropertyRef Name="Authority_Id" />
+    </Key>
+    <Property Name="File_Id" Type="int" Nullable="false" />
+    <Property Name="Authority_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PageElementAuthority">
+    <Key>
+      <PropertyRef Name="PageElement_Id" />
+      <PropertyRef Name="Authority_Id" />
+    </Key>
+    <Property Name="PageElement_Id" Type="int" Nullable="false" />
+    <Property Name="Authority_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ActionAuthority">
+    <Key>
+      <PropertyRef Name="Action_Id" />
+      <PropertyRef Name="Authority_Id" />
+    </Key>
+    <Property Name="Action_Id" Type="int" Nullable="false" />
+    <Property Name="Authority_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleAuthority">
+    <Key>
+      <PropertyRef Name="Role_Id" />
+      <PropertyRef Name="Authority_Id" />
+    </Key>
+    <Property Name="Role_Id" Type="int" Nullable="false" />
+    <Property Name="Authority_Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="GroupGroup">
+    <End Role="Group" Type="Authority.Store.Group" Multiplicity="1" />
+    <End Role="Group1" Type="Authority.Store.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group1">
+        <PropertyRef Name="Parent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MenuMenu">
+    <End Role="Menu" Type="Authority.Store.Menu" Multiplicity="1" />
+    <End Role="Menu1" Type="Authority.Store.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="Parent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserUser">
+    <End Role="User" Type="Authority.Store.User" Multiplicity="1" />
+    <End Role="User1" Type="Authority.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="CreateUser_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupUser_Group">
+    <End Role="Group" Type="Authority.Store.Group" Multiplicity="1" />
+    <End Role="GroupUser" Type="Authority.Store.GroupUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupUser">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupUser_User">
+    <End Role="GroupUser" Type="Authority.Store.GroupUser" Multiplicity="*" />
+    <End Role="User" Type="Authority.Store.User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupUser">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleUser_Role">
+    <End Role="Role" Type="Authority.Store.Role" Multiplicity="1" />
+    <End Role="RoleUser" Type="Authority.Store.RoleUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleUser">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleUser_User">
+    <End Role="RoleUser" Type="Authority.Store.RoleUser" Multiplicity="*" />
+    <End Role="User" Type="Authority.Store.User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleUser">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupRole_Group">
+    <End Role="Group" Type="Authority.Store.Group" Multiplicity="1" />
+    <End Role="GroupRole" Type="Authority.Store.GroupRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupRole">
+        <PropertyRef Name="Group_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupRole_Role">
+    <End Role="GroupRole" Type="Authority.Store.GroupRole" Multiplicity="*" />
+    <End Role="Role" Type="Authority.Store.Role" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupRole">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuAuthority_Menu">
+    <End Role="Menu" Type="Authority.Store.Menu" Multiplicity="1" />
+    <End Role="MenuAuthority" Type="Authority.Store.MenuAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuAuthority">
+        <PropertyRef Name="Menu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuAuthority_Authority">
+    <End Role="MenuAuthority" Type="Authority.Store.MenuAuthority" Multiplicity="*" />
+    <End Role="Authority" Type="Authority.Store.Authority" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Authority">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MenuAuthority">
+        <PropertyRef Name="Authority_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FileAuthority_File">
+    <End Role="File" Type="Authority.Store.File" Multiplicity="1" />
+    <End Role="FileAuthority" Type="Authority.Store.FileAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FileAuthority">
+        <PropertyRef Name="File_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FileAuthority_Authority">
+    <End Role="FileAuthority" Type="Authority.Store.FileAuthority" Multiplicity="*" />
+    <End Role="Authority" Type="Authority.Store.Authority" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Authority">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FileAuthority">
+        <PropertyRef Name="Authority_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PageElementAuthority_PageElement">
+    <End Role="PageElement" Type="Authority.Store.PageElement" Multiplicity="1" />
+    <End Role="PageElementAuthority" Type="Authority.Store.PageElementAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PageElement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PageElementAuthority">
+        <PropertyRef Name="PageElement_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PageElementAuthority_Authority">
+    <End Role="PageElementAuthority" Type="Authority.Store.PageElementAuthority" Multiplicity="*" />
+    <End Role="Authority" Type="Authority.Store.Authority" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Authority">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PageElementAuthority">
+        <PropertyRef Name="Authority_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionAuthority_Action">
+    <End Role="Action" Type="Authority.Store.Action" Multiplicity="1" />
+    <End Role="ActionAuthority" Type="Authority.Store.ActionAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Action">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionAuthority">
+        <PropertyRef Name="Action_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ActionAuthority_Authority">
+    <End Role="ActionAuthority" Type="Authority.Store.ActionAuthority" Multiplicity="*" />
+    <End Role="Authority" Type="Authority.Store.Authority" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Authority">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ActionAuthority">
+        <PropertyRef Name="Authority_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleAuthority_Role">
+    <End Role="Role" Type="Authority.Store.Role" Multiplicity="1" />
+    <End Role="RoleAuthority" Type="Authority.Store.RoleAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleAuthority">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleAuthority_Authority">
+    <End Role="RoleAuthority" Type="Authority.Store.RoleAuthority" Multiplicity="*" />
+    <End Role="Authority" Type="Authority.Store.Authority" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Authority">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoleAuthority">
+        <PropertyRef Name="Authority_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Authority" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="AuthorityContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="User" EntityType="Authority.User" />
+          <EntitySet Name="Role" EntityType="Authority.Role" />
+          <EntitySet Name="Authority" EntityType="Authority.Authority" />
+          <EntitySet Name="Group" EntityType="Authority.Group" />
+          <EntitySet Name="Menu" EntityType="Authority.Menu" />
+          <EntitySet Name="File" EntityType="Authority.File" />
+          <EntitySet Name="PageElement" EntityType="Authority.PageElement" />
+          <EntitySet Name="Action" EntityType="Authority.Action" />
+          <AssociationSet Name="GroupUser" Association="Authority.GroupUser">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="RoleUser" Association="Authority.RoleUser">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="GroupRole" Association="Authority.GroupRole">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="MenuAuthority" Association="Authority.MenuAuthority">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="FileAuthority" Association="Authority.FileAuthority">
+            <End Role="File" EntitySet="File" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="PageElementAuthority" Association="Authority.PageElementAuthority">
+            <End Role="PageElement" EntitySet="PageElement" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="ActionAuthority" Association="Authority.ActionAuthority">
+            <End Role="Action" EntitySet="Action" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="RoleAuthority" Association="Authority.RoleAuthority">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Authority" EntitySet="Authority" />
+          </AssociationSet>
+          <AssociationSet Name="GroupGroup" Association="Authority.GroupGroup">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Group1" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="MenuMenu" Association="Authority.MenuMenu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Menu1" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="UserUser" Association="Authority.UserUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="User1" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="Group" Relationship="Authority.GroupUser" FromRole="User" ToRole="Group" />
+          <NavigationProperty Name="Role" Relationship="Authority.RoleUser" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="CreateUser" Relationship="Authority.UserUser" FromRole="User1" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="Authority.RoleUser" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Group" Relationship="Authority.GroupRole" FromRole="Role" ToRole="Group" />
+          <NavigationProperty Name="Authority" Relationship="Authority.RoleAuthority" FromRole="Role" ToRole="Authority" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Authority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Menu" Relationship="Authority.MenuAuthority" FromRole="Authority" ToRole="Menu" />
+          <NavigationProperty Name="File" Relationship="Authority.FileAuthority" FromRole="Authority" ToRole="File" />
+          <NavigationProperty Name="PageElement" Relationship="Authority.PageElementAuthority" FromRole="Authority" ToRole="PageElement" />
+          <NavigationProperty Name="Action" Relationship="Authority.ActionAuthority" FromRole="Authority" ToRole="Action" />
+          <NavigationProperty Name="Role" Relationship="Authority.RoleAuthority" FromRole="Authority" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="Authority.GroupUser" FromRole="Group" ToRole="User" />
+          <NavigationProperty Name="Role" Relationship="Authority.GroupRole" FromRole="Group" ToRole="Role" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="1000" />
+          <NavigationProperty Name="Childs" Relationship="Authority.GroupGroup" FromRole="Group" ToRole="Group1" />
+          <NavigationProperty Name="Parent" Relationship="Authority.GroupGroup" FromRole="Group1" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Authority" Relationship="Authority.MenuAuthority" FromRole="Menu" ToRole="Authority" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" />
+          <NavigationProperty Name="Childs" Relationship="Authority.MenuMenu" FromRole="Menu" ToRole="Menu1" />
+          <NavigationProperty Name="Parent" Relationship="Authority.MenuMenu" FromRole="Menu1" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Authority" Relationship="Authority.FileAuthority" FromRole="File" ToRole="Authority" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="FilePath" Type="String" Nullable="false" />
+          <Property Name="FileType" Type="String" Nullable="true" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PageElement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Authority" Relationship="Authority.PageElementAuthority" FromRole="PageElement" ToRole="Authority" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Action">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Authority" Relationship="Authority.ActionAuthority" FromRole="Action" ToRole="Authority" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" />
+        </EntityType>
+        <Association Name="GroupUser">
+          <End Type="Authority.Group" Role="Group" Multiplicity="*" />
+          <End Type="Authority.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="RoleUser">
+          <End Type="Authority.Role" Role="Role" Multiplicity="*" />
+          <End Type="Authority.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="GroupRole">
+          <End Type="Authority.Group" Role="Group" Multiplicity="*" />
+          <End Type="Authority.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <Association Name="MenuAuthority">
+          <End Type="Authority.Menu" Role="Menu" Multiplicity="*" />
+          <End Type="Authority.Authority" Role="Authority" Multiplicity="*" />
+        </Association>
+        <Association Name="FileAuthority">
+          <End Type="Authority.File" Role="File" Multiplicity="*" />
+          <End Type="Authority.Authority" Role="Authority" Multiplicity="*" />
+        </Association>
+        <Association Name="PageElementAuthority">
+          <End Type="Authority.PageElement" Role="PageElement" Multiplicity="*" />
+          <End Type="Authority.Authority" Role="Authority" Multiplicity="*" />
+        </Association>
+        <Association Name="ActionAuthority">
+          <End Type="Authority.Action" Role="Action" Multiplicity="*" />
+          <End Type="Authority.Authority" Role="Authority" Multiplicity="*" />
+        </Association>
+        <Association Name="RoleAuthority">
+          <End Type="Authority.Role" Role="Role" Multiplicity="*" />
+          <End Type="Authority.Authority" Role="Authority" Multiplicity="*" />
+        </Association>
+        <Association Name="GroupGroup">
+          <End Type="Authority.Group" Role="Group" Multiplicity="1" />
+          <End Type="Authority.Group" Role="Group1" Multiplicity="*" />
+        </Association>
+        <Association Name="MenuMenu">
+          <End Type="Authority.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="Authority.Menu" Role="Menu1" Multiplicity="*" />
+        </Association>
+        <Association Name="UserUser">
+          <End Type="Authority.User" Role="User" Multiplicity="1" />
+          <End Type="Authority.User" Role="User1" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AuthorityStoreContainer" CdmEntityContainer="AuthorityContainer">
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.Role)">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authority">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.Authority)">
+        <MappingFragment StoreEntitySet="Authority">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.Group)">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.Menu)">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="File">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.File)">
+        <MappingFragment StoreEntitySet="File">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PageElement">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.PageElement)">
+        <MappingFragment StoreEntitySet="PageElement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Action">
+      <EntityTypeMapping TypeName="IsTypeOf(Authority.Action)">
+        <MappingFragment StoreEntitySet="Action">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GroupUser" TypeName="Authority.GroupUser" StoreEntitySet="GroupUser">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Group_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RoleUser" TypeName="Authority.RoleUser" StoreEntitySet="RoleUser">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Role_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GroupRole" TypeName="Authority.GroupRole" StoreEntitySet="GroupRole">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Group_Id" />
+      </EndProperty>
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Role_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MenuAuthority" TypeName="Authority.MenuAuthority" StoreEntitySet="MenuAuthority">
+      <EndProperty Name="Menu">
+        <ScalarProperty Name="Id" ColumnName="Menu_Id" />
+      </EndProperty>
+      <EndProperty Name="Authority">
+        <ScalarProperty Name="Id" ColumnName="Authority_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FileAuthority" TypeName="Authority.FileAuthority" StoreEntitySet="FileAuthority">
+      <EndProperty Name="File">
+        <ScalarProperty Name="Id" ColumnName="File_Id" />
+      </EndProperty>
+      <EndProperty Name="Authority">
+        <ScalarProperty Name="Id" ColumnName="Authority_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PageElementAuthority" TypeName="Authority.PageElementAuthority" StoreEntitySet="PageElementAuthority">
+      <EndProperty Name="PageElement">
+        <ScalarProperty Name="Id" ColumnName="PageElement_Id" />
+      </EndProperty>
+      <EndProperty Name="Authority">
+        <ScalarProperty Name="Id" ColumnName="Authority_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ActionAuthority" TypeName="Authority.ActionAuthority" StoreEntitySet="ActionAuthority">
+      <EndProperty Name="Action">
+        <ScalarProperty Name="Id" ColumnName="Action_Id" />
+      </EndProperty>
+      <EndProperty Name="Authority">
+        <ScalarProperty Name="Id" ColumnName="Authority_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RoleAuthority" TypeName="Authority.RoleAuthority" StoreEntitySet="RoleAuthority">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Role_Id" />
+      </EndProperty>
+      <EndProperty Name="Authority">
+        <ScalarProperty Name="Id" ColumnName="Authority_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GroupGroup" TypeName="Authority.GroupGroup" StoreEntitySet="Group">
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Parent_Id" />
+      </EndProperty>
+      <EndProperty Name="Group1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MenuMenu" TypeName="Authority.MenuMenu" StoreEntitySet="Menu">
+      <EndProperty Name="Menu">
+        <ScalarProperty Name="Id" ColumnName="Parent_Id" />
+      </EndProperty>
+      <EndProperty Name="Menu1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserUser" TypeName="Authority.UserUser" StoreEntitySet="User">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="CreateUser_Id" />
+      </EndProperty>
+      <EndProperty Name="User1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
