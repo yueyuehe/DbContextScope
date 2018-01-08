@@ -1,5 +1,4 @@
-﻿using Mehdime.Entity.Extension.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,14 +6,14 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mehdime.Entity.Extension.Implementations
+namespace Mehdime.Entity.Extension
 {
     public class BasicDal<TEntity, TDbContext> : IBasicDal<TEntity> where TEntity : class where TDbContext : DbContext
     {
         /// <summary>
-        /// DbContext
+        /// DbContext 子类可直接使用
         /// </summary>
-        protected TDbContext context
+        protected TDbContext DbContext
         {
             get
             {
@@ -25,26 +24,8 @@ namespace Mehdime.Entity.Extension.Implementations
                 return dbContext;
             }
         }
-
-        protected DbContextScopeFactory dbContextScopeFactory = new DbContextScopeFactory();
-
-        /// <summary>
-        /// 新增
-        /// </summary>
-        /// <param name="entity"></param>
-        public virtual void Add(TEntity entity)
-        {
-            context.Set<TEntity>().Add(entity);
-        }
-
-        /// <summary>
-        /// 批量新增
-        /// </summary>
-        /// <param name="entities"></param>
-        public virtual void AddRange(IEnumerable<TEntity> entities)
-        {
-            context.Set<TEntity>().AddRange(entities);
-        }
+      
+        #region 查询语句
 
         /// <summary>  
         /// 重载。 返回序列中的元素数。   
@@ -52,7 +33,7 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>  
         public virtual int Count()
         {
-            return context.Set<TEntity>().Count();
+            return DbContext.Set<TEntity>().Count();
         }
 
         /// <summary>  
@@ -62,7 +43,7 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>  
         public virtual int Count(Expression<Func<TEntity, bool>> predicate)
         {
-            return context.Set<TEntity>().Count(predicate);
+            return DbContext.Set<TEntity>().Count(predicate);
         }
 
         /// <summary>  
@@ -70,15 +51,15 @@ namespace Mehdime.Entity.Extension.Implementations
         /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 
         /// 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
         /// 您提供的任何参数值都将自动转换为 DbParameter。
-        /// context.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @p0", userSuppliedAuthor); 
+        /// DbContext.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @p0", userSuppliedAuthor); 
         /// 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。
-        /// context.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
+        /// DbContext.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
         /// </summary>  
         /// <param name="sql">查询语句</param>  
         /// <returns></returns>  
         public virtual bool ExecuteSqlCommand(string sql, params object[] param)
         {
-            return context.Database.ExecuteSqlCommand(sql, param) > 0;
+            return DbContext.Database.ExecuteSqlCommand(sql, param) > 0;
         }
 
         /// <summary>  
@@ -89,7 +70,7 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>  
         public virtual bool Exists(Expression<Func<TEntity, bool>> anyLambda)
         {
-            return context.Set<TEntity>().Any(anyLambda);
+            return DbContext.Set<TEntity>().Any(anyLambda);
         }
 
         /// <summary>
@@ -99,7 +80,7 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>
         public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> where)
         {
-            return context.Set<TEntity>().Where(where);
+            return DbContext.Set<TEntity>().Where(where);
         }
 
         /// <summary>  
@@ -114,7 +95,7 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>  
         public virtual TEntity Find(object key)
         {
-            return context.Set<TEntity>().Find(key);
+            return DbContext.Set<TEntity>().Find(key);
         }
 
 
@@ -128,7 +109,7 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>
         public virtual IQueryable<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc)
         {
-            var _list = context.Set<TEntity>().Where<TEntity>(whereLambda);
+            var _list = DbContext.Set<TEntity>().Where<TEntity>(whereLambda);
             if (isAsc) _list = _list.OrderBy<TEntity, S>(orderLambda);
             else _list = _list.OrderByDescending<TEntity, S>(orderLambda);
             return _list;
@@ -141,7 +122,7 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>  
         public virtual TEntity FindOne(Expression<Func<TEntity, bool>> whereLambda)
         {
-            return context.Set<TEntity>().FirstOrDefault<TEntity>(whereLambda);
+            return DbContext.Set<TEntity>().FirstOrDefault<TEntity>(whereLambda);
         }
 
         /// <summary>
@@ -156,54 +137,12 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <returns></returns>
         public virtual IQueryable<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize)
         {
-            var _list = context.Set<TEntity>().Where<TEntity>(whereLambda);
+            var _list = DbContext.Set<TEntity>().Where<TEntity>(whereLambda);
             if (isAsc) _list = _list.OrderBy<TEntity, S>(orderLambda);
             else _list = _list.OrderByDescending<TEntity, S>(orderLambda);
             _list = _list.Skip(pageSize * (page - 1)).Take(pageSize);
             return _list;
         }
-
-
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="entity"></param>
-        public virtual void Remove(TEntity entity)
-        {
-            context.Set<TEntity>().Remove(entity);
-        }
-
-        /// <summary>
-        /// 批量删除
-        /// </summary>
-        /// <param name="entities"></param>
-        public virtual void RemoveRange(IEnumerable<TEntity> entities)
-        {
-            context.Set<TEntity>().RemoveRange(entities);
-        }
-
-        /// <summary>
-        /// 根据ID删除
-        /// </summary>
-        /// <param name="key"></param>
-        public virtual void Remove(object key)
-        {
-            context.Set<TEntity>().Remove(Find(key));
-        }
-
-        /// <summary>
-        /// 批量删除
-        /// </summary>
-        /// <param name="entities"></param>
-        public virtual void RemoveRange(params object[] keys)
-        {
-            foreach (var item in keys)
-            {
-                Remove(item);
-            }
-        }
-
-
 
         /// <summary>  
         /// 创建一个原始 SQL 查询，该查询将返回此集中的实体。 
@@ -215,15 +154,76 @@ namespace Mehdime.Entity.Extension.Implementations
         /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。
         /// 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
         /// 您提供的任何参数值都将自动转换为 DbParameter。 
-        /// context.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @p0", userSuppliedAuthor); 
+        /// DbContext.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @p0", userSuppliedAuthor); 
         /// 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 
         /// 这允许您在 SQL 查询字符串中使用命名参数。
-        /// context.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
+        /// DbContext.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
         /// </summary>  
         /// <param name="sql">sql查询语句</param>  
         public virtual IEnumerable<TEntity> SqlQuery(string sql, params object[] param)
         {
-            return context.Database.SqlQuery<TEntity>(sql, param);
+            return DbContext.Database.SqlQuery<TEntity>(sql, param);
+        }
+
+        #endregion
+
+        #region 数据库数据操作
+
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="entity"></param>
+        public virtual void Add(TEntity entity)
+        {
+            DbContext.Set<TEntity>().Add(entity);
+        }
+
+        /// <summary>
+        /// 批量新增
+        /// </summary>
+        /// <param name="entities"></param>
+        public virtual void AddRange(IEnumerable<TEntity> entities)
+        {
+            DbContext.Set<TEntity>().AddRange(entities);
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="entity"></param>
+        public virtual void Remove(TEntity entity)
+        {
+            DbContext.Set<TEntity>().Remove(entity);
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="entities"></param>
+        public virtual void RemoveRange(IEnumerable<TEntity> entities)
+        {
+            DbContext.Set<TEntity>().RemoveRange(entities);
+        }
+  
+        /// <summary>
+        /// 根据ID删除
+        /// </summary>
+        /// <param name="key"></param>
+        public virtual void RemoveById(object key)
+        {
+            DbContext.Set<TEntity>().Remove(Find(key));
+        }
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="entities"></param>
+        public virtual void RemoveByIds(params object[] keys)
+        {
+            foreach (var item in keys)
+            {
+                RemoveById(item);
+            }
         }
 
 
@@ -233,8 +233,8 @@ namespace Mehdime.Entity.Extension.Implementations
         /// <param name="entity"></param>
         public virtual void Update(TEntity entity)
         {
-            context.Set<TEntity>().Attach(entity);
-            context.Entry(entity).State = EntityState.Modified;
+            DbContext.Set<TEntity>().Attach(entity);
+            DbContext.Entry(entity).State = EntityState.Modified;
         }
 
         /// <summary>
@@ -245,9 +245,10 @@ namespace Mehdime.Entity.Extension.Implementations
         {
             foreach (var item in entitys)
             {
-                context.Set<TEntity>().Attach(item);
-                context.Entry(item).State = EntityState.Modified;
+                DbContext.Set<TEntity>().Attach(item);
+                DbContext.Entry(item).State = EntityState.Modified;
             }
         }
+        #endregion
     }
 }

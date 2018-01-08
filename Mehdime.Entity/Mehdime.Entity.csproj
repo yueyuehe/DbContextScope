@@ -52,7 +52,6 @@
     <Compile Include="Extension\Implementations\BasicService.cs" />
     <Compile Include="Extension\Interfaces\IBasicDal.cs" />
     <Compile Include="Extension\Interfaces\IBasicService.cs" />
-    <Compile Include="Extension\Interfaces\IEntity.cs" />
     <Compile Include="Implementations\AmbientContextSuppressor.cs" />
     <Compile Include="Implementations\AmbientDbContextLocator.cs" />
     <Compile Include="Implementations\DbContextCollection.cs" />

@@ -50,11 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Goods.cs" />
-    <Compile Include="GoodsBll.cs" />
-    <Compile Include="GoodsDal.cs" />
+    <Compile Include="Module\User\User.cs" />
+    <Compile Include="Module\User\UserDal.cs" />
+    <Compile Include="Module\User\UserService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

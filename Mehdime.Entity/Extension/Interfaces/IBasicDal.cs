@@ -6,11 +6,10 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mehdime.Entity.Extension.Interfaces
+namespace Mehdime.Entity.Extension
 {
     /// <summary>
     /// 数据库操作的基本方法
-    /// 
     /// </summary>
     public interface IBasicDal<TEntity> where TEntity: class
     {
@@ -44,7 +43,19 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// <param name="entities">合集</param>  
         /// <returns></returns>  
         void RemoveRange(IEnumerable<TEntity> entities);
+        
+        
+        /// <summary>
+        /// 根据ID删除
+        /// </summary>
+        /// <param name="key"></param>
+        void RemoveById(object key);
 
+        /// <summary>
+        /// 根据ID删除
+        /// </summary>
+        /// <param name="keys"></param>
+        void RemoveByIds(params object[] keys);
 
         /// <summary>
         /// 修改

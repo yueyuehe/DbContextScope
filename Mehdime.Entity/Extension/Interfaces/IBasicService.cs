@@ -5,10 +5,12 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mehdime.Entity.Extension.Interfaces
+namespace Mehdime.Entity.Extension
 {
     public interface IBasicService<TEntity> where TEntity : class
     {
+        #region 数据操作
+
         /// <summary>  
         /// 将给定实体以“已添加”状态添加到集的基础上下文中，这样一来，
         /// 当调用 SaveChanges 时，会将该实体插入到数据库中。  
@@ -25,7 +27,6 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// <returns></returns>  
         void AddRange(IEnumerable<TEntity> entities);
 
-
         /// <summary>  
         /// 将给定实体标记为“已删除”，这样一来，当调用 SaveChanges 时，将从数据库中删除该实体。 请注意，在调用此方法之前，该实体必须以另一种状态存在于该上下文中。  
         /// </summary>  
@@ -40,6 +41,17 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// <returns></returns>  
         void RemoveRange(IEnumerable<TEntity> entities);
 
+        /// <summary>
+        /// 根据ID删除
+        /// </summary>
+        /// <param name="key"></param>
+        void RemoveById(object key);
+
+        /// <summary>
+        /// 根据Id删除
+        /// </summary>
+        /// <param name="keys"></param>
+        void RemoveByIds(params object[] keys);
 
         /// <summary>
         /// 修改
@@ -52,7 +64,10 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// </summary>
         /// <param name="entity"></param>
         void UpdateRange(IEnumerable<TEntity> entity);
+        #endregion
 
+
+        #region 数据查询
         /// <summary>  
         /// 查找带给定主键值的实体。 
         /// 如果上下文中存在带给定主键值的实体，则立即返回该实体，
@@ -143,7 +158,12 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// <returns></returns>  
         bool Exists(Expression<Func<TEntity, bool>> anyLambda);
 
-
+        /// <summary>
+        /// 判断是否存在
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool Exists(object key);
         /// <summary>  
         /// 重载。 返回序列中的元素数。 （由 QueryableExtensions 定义。）  
         /// </summary>  
@@ -156,5 +176,7 @@ namespace Mehdime.Entity.Extension.Interfaces
         /// <param name="predicate">查询表达式</param>  
         /// <returns></returns>  
         int Count(Expression<Func<TEntity, bool>> predicate);
+
+        #endregion
     }
 }
