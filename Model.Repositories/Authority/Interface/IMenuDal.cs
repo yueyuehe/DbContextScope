@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Model.Repositories.Authority
 {
-    public class AuthorityDal : BasicDal<Model.Entity.Authority.Authority, AuthorityContainer>
+    public interface IMenuDal
     {
-
 
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repositories.Authority
 {
-    public class UserDal : BasicDal<User, AuthorityContainer>
+    public class PageElementDal : BasicDal<PageElement, AuthorityContainer>,IPageElementDal
     {
 
 

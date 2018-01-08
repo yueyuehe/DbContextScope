@@ -49,14 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authority\Interface\ActionDal.cs" />
-    <Compile Include="Authority\Interface\MenuDal.cs" />
-    <Compile Include="Authority\Interface\RoleDal.cs" />
-    <Compile Include="Authority\Interface\PageElementDal.cs" />
-    <Compile Include="Authority\Interface\FileDal.cs" />
-    <Compile Include="Authority\Interface\AuthorityDal.cs" />
-    <Compile Include="Authority\Interface\GruopDal.cs" />
-    <Compile Include="Authority\Interface\UserDal.cs" />
+    <Compile Include="Authority\Implementations\ActionDal.cs" />
+    <Compile Include="Authority\Implementations\MenuDal.cs" />
+    <Compile Include="Authority\Implementations\RoleDal.cs" />
+    <Compile Include="Authority\Implementations\PageElementDal.cs" />
+    <Compile Include="Authority\Implementations\FileDal.cs" />
+    <Compile Include="Authority\Implementations\AuthorityDal.cs" />
+    <Compile Include="Authority\Implementations\GruopDal.cs" />
+    <Compile Include="Authority\Implementations\UserDal.cs" />
+    <Compile Include="Authority\Interface\IActionDal.cs" />
+    <Compile Include="Authority\Interface\IAuthorityDal.cs" />
+    <Compile Include="Authority\Interface\IFileDal.cs" />
+    <Compile Include="Authority\Interface\IGruopDal.cs" />
+    <Compile Include="Authority\Interface\IMenuDal.cs" />
+    <Compile Include="Authority\Interface\IPageElementDal.cs" />
+    <Compile Include="Authority\Interface\IRoleDal.cs" />
+    <Compile Include="Authority\Interface\IUserDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +77,7 @@
       <Name>Model.Entity</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Authority\Implementations\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
