@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaoBao", "TaoBao\TaoBao.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D960EF83-1E1D-47C4-A401-138EBA430386}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HWAdmin", "HWAdmin\HWAdmin.csproj", "{338E80D3-9B5C-4134-A1C5-B69CB91D34D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{D960EF83-1E1D-47C4-A401-138EBA430386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D960EF83-1E1D-47C4-A401-138EBA430386}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D960EF83-1E1D-47C4-A401-138EBA430386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338E80D3-9B5C-4134-A1C5-B69CB91D34D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338E80D3-9B5C-4134-A1C5-B69CB91D34D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338E80D3-9B5C-4134-A1C5-B69CB91D34D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338E80D3-9B5C-4134-A1C5-B69CB91D34D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
