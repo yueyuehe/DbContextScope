@@ -12,6 +12,15 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            string path = @"C:\Users\hewei\Desktop\华为手机助手2018-01-09_100712063.xlsx";
+            var model = new Tools.ReadPhone.ReadNumber();
+            var dic = model.ReadPhone(path);
+            model.ComputeNumber(15882270501, 15882278999);
+        }
+
+
+        public void Test()
+        {
             var stopwatch = new Stopwatch();
             stopwatch.Restart();
             var bll = new UserService();

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo Application", "DemoApplication\Demo Application.csproj", "{977FC0C6-4FDF-4DD9-AAC0-456D4D79C96C}"
 EndProject
@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tbPhone", "tbPhone", "{F4C5
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaoBao", "TaoBao\TaoBao.csproj", "{DB2464FC-6AF9-43E4-8B35-6762D353047C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D960EF83-1E1D-47C4-A401-138EBA430386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{DB2464FC-6AF9-43E4-8B35-6762D353047C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB2464FC-6AF9-43E4-8B35-6762D353047C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB2464FC-6AF9-43E4-8B35-6762D353047C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D960EF83-1E1D-47C4-A401-138EBA430386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D960EF83-1E1D-47C4-A401-138EBA430386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D960EF83-1E1D-47C4-A401-138EBA430386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D960EF83-1E1D-47C4-A401-138EBA430386}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
