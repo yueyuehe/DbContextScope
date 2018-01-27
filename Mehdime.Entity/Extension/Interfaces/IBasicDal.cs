@@ -11,7 +11,7 @@ namespace Mehdime.Entity.Extension
     /// <summary>
     /// 数据库操作的基本方法
     /// </summary>
-    public interface IBasicDal<TEntity> where TEntity: class
+    public interface IBasicDAL<TEntity> where TEntity: class
     {
         /// <summary>  
         /// 将给定实体以“已添加”状态添加到集的基础上下文中，这样一来，

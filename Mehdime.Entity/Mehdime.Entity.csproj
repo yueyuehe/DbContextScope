@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extension\Implementations\BasicDal.cs" />
-    <Compile Include="Extension\Implementations\BasicService.cs" />
-    <Compile Include="Extension\Interfaces\IBasicDal.cs" />
-    <Compile Include="Extension\Interfaces\IBasicService.cs" />
+    <Compile Include="Extension\Implementations\BasicDAL.cs" />
+    <Compile Include="Extension\Implementations\BasicBLL.cs" />
+    <Compile Include="Extension\Interfaces\IBasicDAL.cs" />
+    <Compile Include="Extension\Interfaces\IBasicBLL.cs" />
     <Compile Include="Implementations\AmbientContextSuppressor.cs" />
     <Compile Include="Implementations\AmbientDbContextLocator.cs" />
     <Compile Include="Implementations\DbContextCollection.cs" />
@@ -70,11 +70,15 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="DbContextScope.Interfaces.licenseheader" />
+    <None Include="Doc\文档.docx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Doc\扩展.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
