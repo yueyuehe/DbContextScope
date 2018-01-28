@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1.Module.User
 {
-    public class UserService :BasicService<Person, UserDbContext>
+    public class UserService :BasicBLL<Person, UserDbContext>
     {
 
     }

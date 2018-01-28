@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mehdime.Entity.Extension
 {
-    public interface IBasicService<TEntity> where TEntity : class
+    public interface IBasicBLL<TEntity> where TEntity : class
     {
         #region 数据操作
 

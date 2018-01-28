@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1.Module.User
 {
-    public class UserDal : BasicDal<Person, UserDbContext>
+    public class UserDal : BasicDAL<Person, UserDbContext>
     {
     }
 }

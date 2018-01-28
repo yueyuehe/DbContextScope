@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Business.Authority
 {
-    public class AuthorityService : BasicService<Model.Entity.Authority.Authority, AuthorityContainer>, IAuthorityService
+    public class AuthorityService : BasicBLL<Model.Entity.Authority.Authority, AuthorityContainer>, IAuthorityService
     {
 
 

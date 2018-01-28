@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mehdime.Entity.Extension
 {
-    public class BasicDal<TEntity, TDbContext> : IBasicDal<TEntity> where TEntity : class where TDbContext : DbContext
+    public class BasicDAL<TEntity, TDbContext> : IBasicDAL<TEntity> where TEntity : class where TDbContext : DbContext
     {
         /// <summary>
         /// DbContext 子类可直接使用

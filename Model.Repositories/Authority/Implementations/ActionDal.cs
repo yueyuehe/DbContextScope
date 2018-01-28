@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repositories.Authority
 {
-    public class ActionDal :  BasicDal<Entity.Authority.Action, AuthorityContainer>,IActionDal
+    public class ActionDal :  BasicDAL<Entity.Authority.Action, AuthorityContainer>,IActionDal
     {
 
 

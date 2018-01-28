@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Business.Authority
 {
-    public class RoleService : BasicService<Role, AuthorityContainer> , IRoleService
+    public class RoleService : BasicBLL<Role, AuthorityContainer> , IRoleService
     {
 
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo Application", "DemoApplication\Demo Application.csproj", "{977FC0C6-4FDF-4DD9-AAC0-456D4D79C96C}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HWAdmin", "HWAdmin\HWAdmin.csproj", "{338E80D3-9B5C-4134-A1C5-B69CB91D34D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.Business", "Model.Business\Model.Business.csproj", "{6CB68D11-F35D-408F-A67C-B18A5216B1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authority", "Authority\Authority.csproj", "{8FB26A6E-3E07-4FB7-940D-13E41A4471D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{6CB68D11-F35D-408F-A67C-B18A5216B1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CB68D11-F35D-408F-A67C-B18A5216B1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CB68D11-F35D-408F-A67C-B18A5216B1B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB26A6E-3E07-4FB7-940D-13E41A4471D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB26A6E-3E07-4FB7-940D-13E41A4471D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB26A6E-3E07-4FB7-940D-13E41A4471D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB26A6E-3E07-4FB7-940D-13E41A4471D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

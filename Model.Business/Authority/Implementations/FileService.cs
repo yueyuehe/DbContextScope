@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Business.Authority
 {
-    public class FileService : BasicService<File, AuthorityContainer> , IFileService
+    public class FileService : BasicBLL<File, AuthorityContainer> , IFileService
     {
 
 

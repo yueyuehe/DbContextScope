@@ -8,7 +8,7 @@ using TaoBao.Repository;
 
 namespace TaoBao.BusinessService
 {
-    public class GoodsService : BasicService<Goods, TbContext>
+    public class GoodsService : BasicBLL<Goods, TbContext>
     {
         GoodsDal dal = new GoodsDal();
 

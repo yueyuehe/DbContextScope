@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repositories.Authority
 {
-    public class FileDal : BasicDal<File, AuthorityContainer>, IFileDal
+    public class FileDal : BasicDAL<File, AuthorityContainer>, IFileDal
     {
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Business.Authority
 {
-    public class MenuService : BasicService<Menu, AuthorityContainer> , IMenuService
+    public class MenuService : BasicBLL<Menu, AuthorityContainer> , IMenuService
     {
 
 

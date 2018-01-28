@@ -1,16 +1,15 @@
 ﻿using Mehdime.Entity.Extension;
-using Model.Entity.Authority;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Authority.Entity;
+using Authority.DAL;
 
-namespace Model.Repositories.Authority
+namespace Authority.BLL
 {
-    public class PageElementDal : BasicDAL<PageElement, AuthorityContainer>,IPageElementDal
+    public class ActionBLL : BasicBLL<Authority.Entity.Action, AuthorityContext>
     {
-
-
     }
 }

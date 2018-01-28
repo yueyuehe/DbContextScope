@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repositories.Authority
 {
-    public class GruopDal : BasicDal<Group, AuthorityContainer>, IGruopDal
+    public class GruopDal : BasicDAL<Group, AuthorityContainer>, IGruopDal
     {
 
 

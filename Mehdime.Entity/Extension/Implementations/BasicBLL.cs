@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace Mehdime.Entity.Extension
 {
-    public abstract class BasicService<TEntity, TDbContext> : IBasicService<TEntity> where TEntity : class where TDbContext : DbContext
+    public abstract class BasicBLL<TEntity, TDbContext> : IBasicBLL<TEntity> where TEntity : class where TDbContext : DbContext
     {
         private IDbContextScopeFactory _dbContextScopeFactory = new DbContextScopeFactory();
 
@@ -22,7 +22,7 @@ namespace Mehdime.Entity.Extension
                 return this._dbContextScopeFactory;
             }
         }
-        private IBasicDal<TEntity> basicDal = new BasicDal<TEntity, TDbContext>();
+        private IBasicDAL<TEntity> basicDal = new BasicDAL<TEntity, TDbContext>();
 
         #region 数据操作
         public virtual void Update(TEntity entity)

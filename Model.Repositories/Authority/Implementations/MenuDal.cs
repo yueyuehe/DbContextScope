@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repositories.Authority
 {
-    public class MenuDal : BasicDal<Menu, AuthorityContainer>, IMenuDal
+    public class MenuDal : BasicDAL<Menu, AuthorityContainer>, IMenuDal
     {
 
     }

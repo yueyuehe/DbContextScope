@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Business.Authority
 {
-    public class GroupService : BasicService<Group, AuthorityContainer> , IGroupService
+    public class GroupService : BasicBLL<Group, AuthorityContainer> , IGroupService
     {
 
 

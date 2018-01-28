@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Business.Authority
 {
-    public class UserService : BasicService<User,AuthorityContainer> , IUserService
+    public class UserService : BasicBLL<User,AuthorityContainer> , IUserService
     {
 
 

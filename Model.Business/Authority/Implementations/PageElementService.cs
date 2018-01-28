@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model.Business.Authority
 {
-    public class PageElementService : BasicService<PageElement, AuthorityContainer> , IPageElementService
+    public class PageElementService : BasicBLL<PageElement, AuthorityContainer> , IPageElementService
     {
 
 
