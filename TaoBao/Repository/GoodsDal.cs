@@ -7,7 +7,7 @@ using TaoBao.Models;
 
 namespace TaoBao.Repository
 {
-    public class GoodsDal : BasicDAL<Goods,TbContext>
+    public class GoodsDAL : BasicDAL<Goods,TbContext>
     {
 
     }

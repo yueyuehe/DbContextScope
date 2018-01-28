@@ -7,22 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Model.Entity.Authority
+namespace Design.Authority
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Action
+    public partial class PageElement
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Action()
+        public PageElement()
         {
             this.Authority = new HashSet<Authority>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Url { get; set; }
+        public string Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Authority> Authority { get; set; }

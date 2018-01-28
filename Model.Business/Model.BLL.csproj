@@ -49,22 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authority\Implementations\RoleService.cs" />
-    <Compile Include="Authority\Implementations\PageElementService.cs" />
-    <Compile Include="Authority\Implementations\MenuService.cs" />
-    <Compile Include="Authority\Implementations\GroupService.cs" />
-    <Compile Include="Authority\Implementations\FileService.cs" />
-    <Compile Include="Authority\Implementations\AuthorityService.cs" />
-    <Compile Include="Authority\Implementations\ActionService.cs" />
-    <Compile Include="Authority\Implementations\UserService.cs" />
-    <Compile Include="Authority\Interface\IMenuService.cs" />
-    <Compile Include="Authority\Interface\IRoleService.cs" />
-    <Compile Include="Authority\Interface\IActionService.cs" />
-    <Compile Include="Authority\Interface\IAuthorityService.cs" />
-    <Compile Include="Authority\Interface\IPageElementService.cs" />
-    <Compile Include="Authority\Interface\IFileService.cs" />
-    <Compile Include="Authority\Interface\IGroupService.cs" />
-    <Compile Include="Authority\Interface\IUserService.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

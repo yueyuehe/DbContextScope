@@ -10,7 +10,7 @@ namespace TaoBao.BusinessService
 {
     public class GoodsService : BasicBLL<Goods, TbContext>
     {
-        GoodsDal dal = new GoodsDal();
+        GoodsDAL dal = new GoodsDAL();
 
     }
 }
