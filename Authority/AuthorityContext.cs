@@ -21,7 +21,7 @@ namespace Authority
         public DbSet<Role> Role { get; set; }
         public DbSet<User> User { get; set; }
 
-        public AuthorityContext() : base("name=AuthorityDB")
+        public AuthorityContext() : base("name=HWAdmin")
         {
 
         }

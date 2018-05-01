@@ -3,43 +3,37 @@ using System.Collections.Generic;
 
 namespace Authority.Entity
 {
-   
-    
-    public partial class Authority
+
+    /// <summary>
+    /// 权限的集合表  菜单，功能等权限是1-1关系
+    /// </summary>
+    public partial class Authority : BaseEntity
     {
         public Authority()
         {
-            this.Menu = new HashSet<Menu>();
-            this.FileInfo = new HashSet<FileInfo>();
-            this.PageElement = new HashSet<PageElement>();
-            this.Action = new HashSet<Action>();
-            this.Role = new HashSet<Role>();
+
+            this.Roles = new HashSet<Role>();
+            this.Accounts = new HashSet<Account>();
         }
-    
-        public int Id { get; set; }
-    
-
-        public virtual ICollection<Menu> Menu { get; set; }
-        public virtual ICollection<FileInfo> FileInfo { get; set; }
-        public virtual ICollection<PageElement> PageElement { get; set; }
-        public virtual ICollection<Action> Action { get; set; }
-        public virtual ICollection<Role> Role { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 权限
         /// </summary>
-        public DateTime? CreateDate { get; set; }
+        public string Auth_Id { get; set; }
         /// <summary>
-        /// 更新时间
+        /// 权限类型
         /// </summary>
-        public DateTime? UpdateDate { get; set; }
+        public string AuthorityType { get; set; }
+
         /// <summary>
-        /// 新增人
+        /// 权限
         /// </summary>
-        public virtual User CreateUser { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
+
         /// <summary>
-        /// 更新人
+        /// 用户
         /// </summary>
-        public virtual User UpdateUser { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
+
     }
 }

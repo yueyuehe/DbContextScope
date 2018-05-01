@@ -3,14 +3,12 @@ using System.Collections.Generic;
 
 namespace Authority.Entity
 {
-    public partial class Menu
+    public partial class Menu : BaseEntity
     {
         public Menu()
         {
-            this.Authority = new HashSet<Authority>();
             this.Childs = new HashSet<Menu>();
         }
-        public int Id { get; set; }
         /// <summary>
         /// 菜单名称
         /// </summary>
@@ -19,10 +17,7 @@ namespace Authority.Entity
         /// 菜单URL
         /// </summary>
         public string Url { get; set; }
-        /// <summary>
-        /// 权限
-        /// </summary>
-        public virtual ICollection<Authority> Authority { get; set; }
+       
         /// <summary>
         /// 子菜单
         /// </summary>
@@ -33,22 +28,5 @@ namespace Authority.Entity
         /// </summary>
         public virtual Menu Parent { get; set; }
 
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime? CreateDate { get; set; }
-        /// <summary>
-        /// 更新时间
-        /// </summary>
-        public DateTime? UpdateDate { get; set; }
-        /// <summary>
-        /// 新增人
-        /// </summary>
-        public virtual User CreateUser { get; set; }
-        /// <summary>
-        /// 更新人
-        /// </summary>
-        public virtual User UpdateUser { get; set; }
     }
 }

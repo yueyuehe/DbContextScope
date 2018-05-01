@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\FileInfoBLL.cs" />
     <Compile Include="BLL\ActionBLL.cs" />
     <Compile Include="BLL\AuthorityBLL.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="BLL\PageElementBLL.cs" />
     <Compile Include="BLL\RoleBLL.cs" />
     <Compile Include="BLL\UserBLL.cs" />
+    <Compile Include="DAL\AccountDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DAL\RoleDAL.cs" />
     <Compile Include="DAL\PageElementDAL.cs" />
@@ -63,8 +65,11 @@
     <Compile Include="DAL\FileInfoDAL.cs" />
     <Compile Include="DAL\AuthorityDAL.cs" />
     <Compile Include="DAL\ActionDAL.cs" />
+    <Compile Include="Entity\Account.cs" />
     <Compile Include="Entity\Action.cs" />
     <Compile Include="Entity\Authority.cs" />
+    <Compile Include="Entity\BaseAuthority.cs" />
+    <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\FileInfo.cs" />
     <Compile Include="Entity\Group.cs" />
     <Compile Include="Entity\Menu.cs" />

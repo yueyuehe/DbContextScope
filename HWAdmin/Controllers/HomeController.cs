@@ -8,6 +8,12 @@ namespace HWAdmin.Controllers
 {
     public class HomeController : Controller
     {
+
+        public ActionResult DefaultH()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();

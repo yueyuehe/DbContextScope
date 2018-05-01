@@ -3,33 +3,28 @@ using System;
 using System.Collections.Generic;
 namespace Authority.Entity
 {
-    public partial class Group
+    public partial class Group : BaseEntity
     {
         public Group()
         {
-            this.User = new HashSet<User>();
-            this.Role = new HashSet<Role>();
+            this.Accounts = new HashSet<Account>();
+            this.Roles = new HashSet<Role>();
             this.Childs = new HashSet<Group>();
         }
 
-        public int Id { get; set; }
         /// <summary>
         /// 名称
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// 描述
-        /// </summary>
-        public string Description { get; set; }
 
         /// <summary>
         /// 用户集合
         /// </summary>
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
         /// <summary>
         /// 权限集合
         /// </summary>
-        public virtual ICollection<Role> Role { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
         /// <summary>
         /// 子组集合
         /// </summary>
@@ -40,21 +35,5 @@ namespace Authority.Entity
         public virtual Group Parent { get; set; }
 
 
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime? CreateDate { get; set; }
-        /// <summary>
-        /// 更新时间
-        /// </summary>
-        public DateTime? UpdateDate { get; set; }
-        /// <summary>
-        /// 新增人
-        /// </summary>
-        public virtual User CreateUser { get; set; }
-        /// <summary>
-        /// 更新人
-        /// </summary>
-        public virtual User UpdateUser { get; set; }
     }
 }
