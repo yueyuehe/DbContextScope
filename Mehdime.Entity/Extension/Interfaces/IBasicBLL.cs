@@ -92,7 +92,7 @@ namespace Mehdime.Entity.Extension
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> where);
+        IList<TEntity> Find(Expression<Func<TEntity, bool>> where);
 
         /// <summary>
         /// 查询集合
@@ -102,7 +102,7 @@ namespace Mehdime.Entity.Extension
         /// <param name="orderLambda">排序</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns></returns>
-        IQueryable<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc);
+        IList<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc);
 
         /// <summary>
         /// 分页查询
@@ -114,7 +114,7 @@ namespace Mehdime.Entity.Extension
         /// <param name="page">第几页</param>
         /// <param name="pageSize">每页显示数量</param>
         /// <returns></returns>
-        IQueryable<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize);
+        IList<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize);
 
 
         //6.0  
@@ -134,7 +134,7 @@ namespace Mehdime.Entity.Extension
         /// context.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
         /// </summary>  
         /// <param name="sql">sql查询语句</param>  
-        IEnumerable<TEntity> SqlQuery(string sql, params object[] param);
+        IList<TEntity> SqlQuery(string sql, params object[] param);
 
 
         /// <summary>  

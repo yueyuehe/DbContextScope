@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+@model Gift.Article
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Content</title>
+    <link href="~/Content/simditor/styles/simditor.css" rel="stylesheet" />
+    <script src="~/Content/simditor/scripts/jquery.min.js"></script>
+    <script src="~/Content/simditor/scripts/module.js"></script>
+    <script src="~/Content/simditor/scripts/hotkeys.js"></script>
+    <script src="~/Content/simditor/scripts/uploader.js"></script>
+    <script src="~/Content/simditor/scripts/simditor.js"></script>
+</head>
+<body>
+    <img src="~/Content/simditor/images/logo.png" />
+    <textarea id="editor" placeholder="Balabala" autofocus>
+    </textarea>
+    <div id="content">
+        @Html.Raw(Model.ContentHtml)
+    </div>
+    <script>
+        $(function () {
+            var editor = new Simditor({
+                textarea: $("#editor"),
+                toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'ol', 'ul',
+                    'blockquote', 'code', 'table', 'link', 'image', 'hr', 'indent', 'outdent', 'alignment'],
+                defaultImage: "/Content/simditor/images/logo.png",
+                imageButton: ['upload', 'external']
+            });
+            var htmlString = $("#content").html();
+            $("#content").empty();
+            editor.setValue(htmlString);
+        })
+
+
+    </script>
+</body>
+</html>

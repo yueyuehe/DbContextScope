@@ -1,4 +1,4 @@
-﻿using Authority.Entity;
+﻿using Authority.Basic;
 using Mehdime.Entity.Extension;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Authority.DAL
 {
-    public class AuthorityDAL : BasicDAL<Entity.Authority, AuthorityContext>
+    public class AuthorityDAL : BasicDAL<Basic.Authority, AuthorityContext>
     {
     }
 }

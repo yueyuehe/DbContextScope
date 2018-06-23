@@ -1,0 +1,7 @@
+2018-05-25 00:30:18.0726|INFO|Common.AppFilter.ExceptionAttribute|filterContext
+2018-05-25 00:33:26.3034|ERROR|Common.AppFilter.ExceptionAttribute|asd
+2018-05-25 00:33:29.1716|INFO|Common.AppFilter.ExceptionAttribute|filterContext
+2018-05-25 00:56:58.7142|ERROR|Common.AppFilter.ExceptionAttribute|asd
+2018-05-25 00:57:01.7234|INFO|Common.AppFilter.ExceptionAttribute|filterContext
+2018-05-25 01:05:48.6915|ERROR|Common.AppFilter.ExceptionAttribute|asd
+2018-05-25 01:05:49.4655|INFO|Common.AppFilter.ExceptionAttribute|filterContext

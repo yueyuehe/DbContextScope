@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Authority.Entity
+namespace Authority.Basic
 {
 
     public partial class Role : BaseEntity

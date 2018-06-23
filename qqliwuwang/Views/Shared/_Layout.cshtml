@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 芊芊礼物网</title>
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="description" content="@ViewBag.Description">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @RenderSection("style", required: false)
+    <style>
+        hr {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body style="background-color:#EEEEEE;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("芊芊礼物网", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="hidden-sm">@Html.ActionLink("首页", "Index", "Home")</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">赠送对象<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">父母</a></li>
+                            <li><a href="#">男票</a></li>
+                            <li><a href="#">女票</a></li>
+                            <li><a href="#">小朋友</a></li>
+                            <li><a href="#">自己</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">更多...</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">赠送目的<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">生日</a></li>
+                            <li><a href="#">纪念日</a></li>
+                            <li><a href="#">情人节</a></li>
+                            <li><a href="#">愚人节</a></li>
+                            <li><a href="#">就是想送了</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">更多...</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ta的个性<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">萌萌哒<span class="badge">H</span></a></li>
+                            <li><a href="#">女王范</a></li>
+                            <li><a href="#">动漫迷</a></li>
+                            <li><a href="#">游戏迷</a></li>
+                            <li><a href="#">科技范</a></li>
+                            <li><a href="#">DIY</a></li>
+                            <li><a href="#">小创意</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">更多...</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="hidden-sm">@Html.ActionLink("送女友", "Article", "Home")</li>
+                    <li class="hidden-sm">@Html.ActionLink("送男友", "Article", "Home")</li>
+                    <li class="hidden-sm hidden-md">@Html.ActionLink("父亲节", "Article", "Home")</li>
+                    <li class="hidden-sm hidden-md">@Html.ActionLink("猜ta喜欢", "Article", "Home")</li>
+                    <li class="hidden-sm hidden-md">@Html.ActionLink("送礼攻略", "Article", "Home")</li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索礼物">
+                    </div>
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+        $(function () {
+            $(".dropdown").mouseover(function () {
+                $(this).addClass("open");
+            });
+            $(".dropdown").mouseleave(function () {
+                $(this).removeClass("open");
+            })
+        })
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+        //腾讯统计
+        var _mtac = {};
+        (function () {
+            var mta = document.createElement("script");
+            mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.4";
+            mta.setAttribute("name", "MTAH5");
+            mta.setAttribute("sid", "500619230");
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(mta, s);
+        })();
+    </script>
+</body>
+</html>

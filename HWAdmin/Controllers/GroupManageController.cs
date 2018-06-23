@@ -1,5 +1,6 @@
 ﻿using Authority.BLL;
-using Authority.Entity;
+using Authority.Basic;
+using Common;
 using HWAdmin.Models;
 using HWAdmin.Unit;
 using System;
@@ -7,7 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Common.Model;
+using Common.Extensions;
+using Common.Config.AppStr;
+using LayuiFW.Model;
+using System.ComponentModel;
 
 namespace HWAdmin.Controllers
 {
@@ -19,22 +24,31 @@ namespace HWAdmin.Controllers
         /// 跳转到主页
         /// </summary>
         /// <returns></returns>
+        [Description("跳转到主页")]
         public ActionResult Index()
         {
-            return View();
+            HttpContext.Items["HttpContext_Account_ID"] = "Account_ID";
+            var model = new GroupModel();
+            model.Url = "/GroupManage/GetList";
+            throw new Exception("故意的错误！");
+            return View(model);
         }
 
         /// <summary>
         /// 获取列表数据
         /// </summary>
         /// <returns></returns>
-        public JsonResult GetList(PageResponse pageModel)
+        public JsonResult GetList(TableData pageModel)
         {
             //条件查询
+            pageModel.count = bll.Count(p => true);
             var query = bll.FindPageList(p => true, p => p.CreateDate, false, pageModel.page, pageModel.limit);
-            pageModel.data = query.ToList();
-            var json = new JsonResult();
-            json.Data = pageModel;
+            pageModel.data = query.ToList().MapToList<Group, GroupModel>();
+            var json = new JsonResult
+            {
+                Data = pageModel
+            };
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return json;
         }
 
@@ -48,7 +62,6 @@ namespace HWAdmin.Controllers
             //获取相关的账号
             var memberAccount = bll.FindOne(p => p.Id == id).Accounts;
             //根据账号获取相关信息
-
 
 
             return View();
@@ -66,12 +79,21 @@ namespace HWAdmin.Controllers
         }
 
         /// <summary>
+        /// 转到新增页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Add()
+        {
+            return View("Edit");
+        }
+
+        /// <summary>
         /// 新增 and 修改
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Save(GroupModelView model)
+        public ActionResult Save(GroupModel model)
         {
             var result = new MsgResponse();
             try
@@ -86,10 +108,12 @@ namespace HWAdmin.Controllers
                 }
                 else
                 {
-                    oldModel = new Group();
-                    oldModel.Id = Guid.NewGuid().ToString();
-                    oldModel.Name = model.Name;
-                    oldModel.Description = model.Description;
+                    oldModel = new Group
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Name = model.Name,
+                        Description = model.Description
+                    };
                     bll.Add(oldModel);
                     result.Message = "保存成功";
                 }
@@ -126,9 +150,42 @@ namespace HWAdmin.Controllers
                 result.Status = false;
                 result.Message = "删除失败 " + ex.Message;
             }
-            var json = new JsonResult();
-            json.Data = result;
+            var json = new JsonResult
+            {
+                Data = result
+            };
             return json;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetGroupTree()
+        {
+            TreeModel model = new TreeModel();
+            model.elem = "#tree";
+            model.nodes.AddRange(new List<Node>() { new Node() { name = "1111" }, new Node { name = "222" } });
+            JsonResult result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            result.Data = model;
+            return result;
+        }
+
+        public JsonResult GetTreeData()
+        {
+            var groups = bll.Find(p => p.FlgDel == FlgDel.N);
+
+            List<Node> list = new List<Node>();
+            for (var i = 0; i < 10; i++)
+            {
+                list.Add(new Node() { name = "tree" + i });
+            }
+            list[0].children.Add(new Node() { name = "ttt222" });
+            JsonResult result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            result.Data = list;
+            return result;
         }
     }
 }

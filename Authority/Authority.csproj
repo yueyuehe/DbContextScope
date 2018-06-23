@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\AuthorityBaseBLL.cs" />
+    <Compile Include="Basic\BaseBLL.cs" />
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\FileInfoBLL.cs" />
     <Compile Include="BLL\ActionBLL.cs" />
@@ -55,9 +57,7 @@
     <Compile Include="BLL\MenuBLL.cs" />
     <Compile Include="BLL\PageElementBLL.cs" />
     <Compile Include="BLL\RoleBLL.cs" />
-    <Compile Include="BLL\UserBLL.cs" />
     <Compile Include="DAL\AccountDAL.cs" />
-    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DAL\RoleDAL.cs" />
     <Compile Include="DAL\PageElementDAL.cs" />
     <Compile Include="DAL\MenuDAL.cs" />
@@ -68,18 +68,23 @@
     <Compile Include="Entity\Account.cs" />
     <Compile Include="Entity\Action.cs" />
     <Compile Include="Entity\Authority.cs" />
-    <Compile Include="Entity\BaseAuthority.cs" />
-    <Compile Include="Entity\BaseEntity.cs" />
+    <Compile Include="Basic\BaseEntity.cs" />
+    <Compile Include="Entity\ErrorLog.cs" />
     <Compile Include="Entity\FileInfo.cs" />
     <Compile Include="Entity\Group.cs" />
+    <Compile Include="Entity\LoginLog.cs" />
     <Compile Include="Entity\Menu.cs" />
+    <Compile Include="Entity\OperateLog.cs" />
     <Compile Include="Entity\PageElement.cs" />
     <Compile Include="Entity\Role.cs" />
-    <Compile Include="Entity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AuthorityContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{D960EF83-1E1D-47C4-A401-138EBA430386}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mehdime.Entity\Mehdime.Entity.csproj">
       <Project>{4830bafd-4163-473e-b00f-65f274ac165f}</Project>
       <Name>Mehdime.Entity</Name>
@@ -89,5 +94,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

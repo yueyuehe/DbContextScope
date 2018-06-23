@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Article";
+}
+@model Gift.Article
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="editor">
+                        @Html.Raw(Model.ContentHtml)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+        <!--右边推荐栏-->
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row text-center">
+                    <h4>精品推荐</h4>
+                </div>
+                <hr />
+                <div class="thumbnail">
+                    <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h5>xxsakdasld</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                ¥50.99
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                查看详细
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row text-center"><h5>更多精美礼品</h5></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--工具栏-->
+<div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+    <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+        <ul class="dropdown-menu"></ul>
+    </div>
+    <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+            <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+            <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+    </div>
+    <div class="btn-group">
+        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+    </div>
+    <div class="btn-group">
+        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+    </div>
+    <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+        <div class="dropdown-menu input-append">
+            <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
+            <button class="btn" type="button">Add</button>
+        </div>
+        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
+
+    </div>
+
+    <div class="btn-group">
+        <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+    </div>
+    <div class="btn-group">
+        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+    </div>
+    <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.hotkeys.js"></script>
+    <script src="~/Scripts/bootstrap-wysiwyg.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#editor').wysiwyg();
+        })
+
+    </script>
+
+}

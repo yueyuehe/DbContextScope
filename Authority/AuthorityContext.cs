@@ -5,21 +5,21 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Authority.Entity;
+using Authority.Basic;
 
 namespace Authority
 {
     public class AuthorityContext : DbContext
     {
         // Map our 'User' model by convention
-        public DbSet<Entity.Action> Action { get; set; }
-        public DbSet<Entity.Authority> Authority { get; set; }
-        public DbSet<FileInfo> FileInfo { get; set; }
-        public DbSet<Group> Group { get; set; }
-        public DbSet<Menu> Menu { get; set; }
-        public DbSet<PageElement> PageElement { get; set; }
-        public DbSet<Role> Role { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Basic.Action> Actions { get; set; }
+        public DbSet<Basic.Authority> Authorities { get; set; }
+        public DbSet<FileInfo> Files { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<PageElement> PageElements { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         public AuthorityContext() : base("name=HWAdmin")
         {

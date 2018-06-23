@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Authority.Entity
+namespace Authority.Basic
 {
     /// <summary>
     /// 操作权限 功能权限

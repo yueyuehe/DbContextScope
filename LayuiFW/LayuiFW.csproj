@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DC7A365-9BBA-4EFE-8D0F-FAC2D1BAB7AB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LayuiFW</RootNamespace>
+    <AssemblyName>LayuiFW</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\DisplayAttribute.cs" />
+    <Compile Include="Attributes\InputAttribute.cs" />
+    <Compile Include="Attributes\LayColumnAttribute.cs" />
+    <Compile Include="Attributes\TreeselectAttribute.cs" />
+    <Compile Include="Enums\AlignType.cs" />
+    <Compile Include="Enums\ColumnType.cs" />
+    <Compile Include="Enums\DisplayType.cs" />
+    <Compile Include="Enums\EditType.cs" />
+    <Compile Include="Enums\FixedType.cs" />
+    <Compile Include="Enums\FlgDel.cs" />
+    <Compile Include="Enums\InputType.cs" />
+    <Compile Include="Enums\SizeType.cs" />
+    <Compile Include="Enums\SkinType.cs" />
+    <Compile Include="Enums\VerifyType.cs" />
+    <Compile Include="Helpers\LayDataHelper.cs" />
+    <Compile Include="Helpers\LayHtmlHelper.cs" />
+    <Compile Include="LayExtensions\InputExtensions.cs" />
+    <Compile Include="LayExtensions\LabelExtensions.cs" />
+    <Compile Include="LayExtensions\LayExtensions.cs" />
+    <Compile Include="LayExtensions\TextAreaExtensions.cs" />
+    <Compile Include="Model\LayTable.cs" />
+    <Compile Include="Model\TableData.cs" />
+    <Compile Include="Model\TreeItem.cs" />
+    <Compile Include="Model\TreeModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HtmlExtension\Extensions\" />
+    <Folder Include="HtmlExtension\LayuiExtensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{d960ef83-1e1d-47c4-a401-138eba430386}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

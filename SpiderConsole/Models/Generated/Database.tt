@@ -1,0 +1,42 @@
+<#@ include file="PetaPoco.Core.ttinclude" #>
+<#
+	// Settings
+    ConnectionStringName = "qqliwuwang";			// Uses last connection string in config if not specified
+    Namespace = "qqliwuwang";
+    RepoName = "GiftDB";
+    GenerateOperations = true;
+	GeneratePocos = true; 
+	GenerateCommon = true;
+	ClassPrefix = "";
+	ClassSuffix = "";
+	TrackModifiedColumns = false;
+	ExplicitColumns = true;
+	ExcludePrefix = new string[] {}; // Exclude tables by prefix.
+
+    // Read schema
+	var tables = LoadTables();
+
+	for(var i=0;i<tables.Count;i++){ 
+	var str = tables[i].ClassName.Substring(7);
+	tables[i].ClassName =str.Substring(0,1).ToUpper()+str.Substring(1) ;
+	}
+	tables["t_gift_ArticleDetails"]["feature_list"].Ignore=true;
+	tables["t_gift_ArticleDetails"]["label_ids"].Ignore=true;
+	
+
+
+/*
+	// Tweak Schema
+	tables["tablename"].Ignore = true;							// To ignore a table
+	tables["tablename"].ClassName = "newname";					// To change the class name of a table
+	tables["tablename"]["columnname"].Ignore = true;			// To ignore a column
+	tables["tablename"]["columnname"].PropertyName="newname";	// To change the property name of a column
+	tables["tablename"]["columnname"].PropertyType="bool";		// To change the property type of a column
+*/
+
+	// Generate output
+	if (tables.Count>0)
+	{
+#>
+<#@ include file="PetaPoco.Generator.ttinclude" #>
+<# } #>

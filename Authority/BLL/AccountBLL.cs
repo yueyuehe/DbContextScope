@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Authority.Entity;
+using Authority.Basic;
 using Authority.DAL;
 using Mehdime.Entity.Extension;
 
 namespace Authority.BLL
 {
-    public class AccountBLL : BasicBLL<Account, AuthorityContext>
+    public class AccountBLL : AuthorityBaseBLL<Account>
     {
 
     }
