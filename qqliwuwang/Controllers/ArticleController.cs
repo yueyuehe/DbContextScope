@@ -19,12 +19,12 @@ namespace qqliwuwang.Controllers
         {
             try
             {
-                var model = artBll.GetArticleById(id);
+                var model = artBll.FindById(id);
                 return View(model);
             }
             catch (Exception ex)
             {
-                return View(new Article());
+                return View(new Gift_Article());
             }
         }
 
@@ -36,12 +36,12 @@ namespace qqliwuwang.Controllers
         {
             try
             {
-                var model = artBll.GetArticleById(id);
+                var model = artBll.FindById(id);
                 return View(model);
             }
             catch (Exception ex)
             {
-                return View(new Article());
+                return View(new Gift_Article());
             }
             return View();
         }

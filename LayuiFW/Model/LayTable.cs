@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace LayuiFW.Model
 {
+    /// <summary>
+    /// 表格模板 表格实体需要继承这个类
+    /// </summary>
     public class LayTable
     {
         public LayTable()

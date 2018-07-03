@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "ArticleList";
+    Layout = "~/Views/Shared/_Bootstrap.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">文章管理</div>
+    <div class="panel-body">
+        <div id="toolbar" class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" id="editBtn">编辑</button>
+            <button type="button" class="btn btn-default" id="delBtn">删除</button>
+        </div>
+        <table id="bootstrap_table"></table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#bootstrap_table').bootstrapTable({
+            columns: [
+                { field: 'Checked', checkbox: true },
+                { field: "Id", checkbox: true, visible: false },
+                { field: "Category_Id", title: '板块', visible: false },
+                { field: "Title", title: '标题', visible: true },
+                { field: "Article_Type", title: '文章类型', visible: false },
+                { field: "Highlight", title: '高亮标题', visible: true },
+                { field: "Author", title: '作者', visible: true },
+                { field: "Source", title: '来源', visible: true },
+                { field: "ImageUrl", title: '主图URL', visible: false },
+                { field: "Excerpt", title: '摘要', visible: true },
+                { field: "HeadContent", title: '导语', visible: true },
+                { field: "Weight", title: '排序', visible: false },
+                { field: "Hits", title: '点击数', visible: true },
+                { field: "IsDigest", title: '置顶', visible: true },
+                { field: "IsDisplay", title: '是否显示', visible: false },
+                { field: "Modified", title: '修改时间', visible: false },
+                { field: "Created", title: '添加时间', visible: false },
+                { field: "TagContent", title: '结束语', visible: false },
+                { field: "CreateTime", title: '创建时间', visible: false },
+                { field: "CreateUser", title: '创建用户', visible: false },
+                { field: "UpdateTime", title: '更新时间', visible: false },
+                { field: "UpdateUser", title: '更新用户', visible: false },
+                { field: "DeleteFlag", title: '删除标记', visible: false }
+            ],
+            method: "get",
+            url: "/ArticleManage/Articles",
+            pagination: true,//分页
+            sidePagination: "server",
+            idField: "Id",
+            toolbar: "#toolbar",
+            clickToSelect: true,
+            silentSort: false,
+            resizable: true,
+            //showColumns: true,
+            height: $(window).height() - 100,
+
+        });
+
+        $("#editBtn").bind("click", function () {
+            var rows = $("#bootstrap_table").bootstrapTable("getSelections");
+            if (rows.length == 0) {
+                layerAlert("请选择一行!");
+                return;
+            }
+            if (rows.length > 1) {
+                layerAlert("只能选择一行!");
+                return;
+            }
+            var id = rows[0].Id;
+            location.href = "/TbGoodsManage/Edit?id=" + id;
+        })
+    })
+
+</script>

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_Bootstrap.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-horizontal" action="/TbGoodsManage/Edit" method="post">
+            <div class="form-group">
+                <label for="Name" class="col-sm-2 control-label">Excel文件</label>
+                <div class="col-sm-10">
+                    <input type="file" name="fileInfo" id="fileInfo" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 text-center">
+                    <button type="submit" id="submitBtn" class="btn btn-default">立即上传</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="message" value="@ViewData["msg"]" hidden />
+<script>
+
+    $(function () {
+        if ($.trim($("message").val()) != "") {
+            layerAlert($("message").val());
+        }
+
+        $("#submitBtn").bind("click", function () {
+            ajaxUpload("fileInfo", "/TbGoodsManage/Upload", {}, function (data) {
+                parent.layerAlert(data.Message);
+            });
+        })
+    })
+
+</script>

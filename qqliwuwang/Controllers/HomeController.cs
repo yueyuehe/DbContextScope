@@ -19,14 +19,41 @@ namespace qqliwuwang.Controllers
         {
             try
             {
-                var model = artBll.GetArticleById(id);
+                var model = artBll.FindById(id);
                 return View(model);
             }
             catch (Exception ex)
             {
-                return View(new Article());
+                return View(new Gift_Article());
             }
         }
+
+        public ActionResult Article2(int id = 4028)
+        {
+            try
+            {
+                var model = artBll.FindById(id);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View(new Gift_Article());
+            }
+        }
+
+        public ActionResult ArticleTest(int id = 4028)
+        {
+            try
+            {
+                var model = artBll.FindById(id);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return View(new Gift_Article());
+            }
+        }
+        
 
         public ActionResult About()
         {

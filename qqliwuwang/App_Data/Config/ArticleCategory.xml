@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <ArticleCategoty>
+    <Crowd value="人群画像">
+      <group value="恋人师友">
+        <item key="AAAAA" value="女友"></item>
+        <item key="AAABA" value="男友"></item>
+        <item key="AAACA" value="女性朋友"></item>
+        <item key="AAADA" value="男性朋友"></item>
+        <item key="AAAEA" value="女生"></item>
+        <item key="AAAFA" value="女同学"></item>
+        <item key="AAAGA" value="女老师"></item>
+        <item key="AAAHA" value="姐妹"></item>
+        <item key="AAAIA" value="闺蜜"></item>
+        <item key="AAAJA" value="男生"></item>
+        <item key="AAALA" value="男同学"></item>
+        <item key="AAAMA" value="男老师"></item>
+        <item key="AAANA" value="兄弟"></item>
+        <item key="AAAOA" value="朋友"></item>
+        <item key="AAAPA" value="爱人"></item>
+        <item key="AAAQA" value="异性朋友"></item>
+        <item key="AAARA" value="外国人"></item>
+      </group>
+      <group value="家人亲戚">
+        <item key="AAAAA" value="老婆"></item>
+        <item key="AAABA" value="老公"></item>
+        <item key="AAACA" value="妈妈"></item>
+        <item key="AAADA" value="爸爸"></item>
+        <item key="AAAEA" value="爷爷"></item>
+        <item key="AAAFA" value="奶奶"></item>
+        <item key="AAAGA" value="公公"></item>
+        <item key="AAAHA" value="婆婆"></item>
+        <item key="AAAIA" value="父母"></item>
+        <item key="AAAJA" value="老人"></item>
+        <item key="AAALA" value="女儿"></item>
+        <item key="AAAMA" value="儿子"></item>
+        <item key="AAANA" value="姐姐"></item>
+        <item key="AAAOA" value="妹妹"></item>
+        <item key="AAAPA" value="哥哥"></item>
+        <item key="AAAQA" value="弟弟"></item>
+        <item key="AAARA" value="岳父"></item>
+        <item key="AAASA" value="岳母"></item>
+        <item key="AAATA" value="小男孩"></item>
+        <item key="AAAUA" value="小女孩"></item>
+      </group>
+      <group value="其他人">
+        <item key="AAAAA" value="客户"></item>
+        <item key="AAABA" value="领导"></item>
+        <item key="AAACA" value="同事"></item>
+        <item key="AAADA" value="老板"></item>
+        <item key="AAAEA" value="中年人"></item>
+        <item key="AAAFA" value="病人"></item>
+        <item key="AAAGA" value="医生"></item>
+        <item key="AAAHA" value="上司"></item>
+        <item key="AAAIA" value="员工"></item>
+        <item key="AAAJA" value="长辈"></item>
+        <item key="AAALA" value="孩子"></item>
+        <item key="AAAMA" value="婴儿"></item>
+        <item key="AAANA" value="宝宝"></item>
+        <item key="AAAOA" value="小学生"></item>
+        <item key="AAAPA" value="初中生"></item>
+        <item key="AAAQA" value="高中生"></item>
+        <item key="AAARA" value="大学生"></item>
+        <item key="AAASA" value="学生"></item>
+        <item key="AAATA" value="老师"></item>
+        <item key="AAAUA" value="同学"></item>
+      </group>
+    </Crowd>
+    <Purpose value="目的">
+      <group value="祝贺">
+        <item key="AAAAA" value="生日礼物"></item>
+        <item key="AAABA" value="生子"></item>
+        <item key="AAACA" value="满月"></item>
+        <item key="AAADA" value="怀孕"></item>
+        <item key="AAAEA" value="周岁"></item>
+        <item key="AAAFA" value="祝寿"></item>
+        <item key="AAAGA" value="百天"></item>
+        <item key="AAAHA" value="本命年礼物"></item>
+        <item key="AAAIA" value="十岁礼物"></item>
+        <item key="AAAJA" value="成年"></item>
+        <item key="AAALA" value="20岁礼物"></item>
+        <item key="AAAMA" value="30岁礼物"></item>
+        <item key="AAANA" value="40岁礼物"></item>
+        <item key="AAAOA" value="50岁礼物"></item>
+        <item key="AAAPA" value="60岁礼物"></item>
+        <item key="AAAQA" value="70岁礼物"></item>
+        <item key="AAARA" value="80岁礼物"></item>
+        <item key="AAASA" value="90岁礼物"></item>
+      </group>
+      <group value="纪念">
+        <item key="AAAAA" value="结婚礼物"></item>
+        <item key="AAABA" value="结婚纪念"></item>
+        <item key="AAACA" value="金婚礼物"></item>
+        <item key="AAADA" value="银婚礼物"></item>
+        <item key="AAAEA" value="订婚"></item>
+        <item key="AAAFA" value="婚庆礼品"></item>
+        <item key="AAAGA" value="恋爱礼物"></item>
+        <item key="AAAHA" value="约会礼物"></item>
+        <item key="AAAIA" value="表白礼物"></item>
+        <item key="AAAJA" value="暗恋"></item>
+        <item key="AAALA" value="见面"></item>
+        <item key="AAAMA" value="异地恋"></item>
+        <item key="AAANA" value="情侣礼物"></item>
+        <item key="AAAOA" value="纪念礼物"></item>
+      </group>
+      <group value="其他">
+        <item key="AAAAA" value="商务礼品"></item>
+        <item key="AAABA" value="开业礼品"></item>
+        <item key="AAACA" value="祝贺"></item>
+        <item key="AAADA" value="拜访礼品"></item>
+        <item key="AAAEA" value="乔迁"></item>
+        <item key="AAAFA" value="搬家"></item>
+        <item key="AAAGA" value="感谢礼物"></item>
+        <item key="AAAHA" value="道歉礼物"></item>
+        <item key="AAAIA" value="探病礼物"></item>
+        <item key="AAAJA" value="年会"></item>
+        <item key="AAALA" value="升学礼物"></item>
+        <item key="AAAMA" value="毕业礼物"></item>
+        <item key="AAANA" value="升职礼物"></item>
+        <item key="AAAOA" value="促销庆典"></item>
+        <item key="AAAOA" value="福利礼品"></item>
+        <item key="AAAOA" value="会议"></item>
+      </group>
+    </Purpose>
+    <Festival value="节日">
+
+    </Festival>
+  </ArticleCategoty>
+</config>

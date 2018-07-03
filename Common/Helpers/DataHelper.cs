@@ -152,7 +152,40 @@ namespace Common.Helpers
             }
             return dt;
         }
-    }
 
-   
+        public static IList<T> ToList<T>(DataTable dt) where T : new()
+        {
+            /*kd
+            // 定义集合    
+            IList < T > list = new List<T>();
+            // 获得此模型的类型   
+            Type type = typeof(T);
+            string tempName = "";
+            foreach (DataRow dr in dt.Rows)
+            {
+                T model = new T();
+                // 获得此模型的公共属性      
+                PropertyInfo[] propertys = model.GetType().GetProperties();
+                foreach (PropertyInfo pi in propertys)
+                {
+                    tempName = pi.Name;
+                    // 检查DataTable是否包含此列    
+                    if (dt.Columns.Contains(tempName))
+                    {
+                        // 判断此属性是否有Setter      
+                        if (!pi.CanWrite) continue;
+                        object value = dr[tempName];
+                        if (value != DBNull.Value)
+                            pi.SetValue(model, value, null);
+                    }
+                }
+                list.Add(model);
+            }
+            */
+            var list = new List<T>();
+            var jsondata = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
+            list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(jsondata);
+            return list;
+        }
+    }
 }

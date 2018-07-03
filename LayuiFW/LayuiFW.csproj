@@ -67,6 +67,7 @@
     <Compile Include="LayExtensions\LayExtensions.cs" />
     <Compile Include="LayExtensions\TextAreaExtensions.cs" />
     <Compile Include="Model\LayTable.cs" />
+    <Compile Include="Model\PageRequest.cs" />
     <Compile Include="Model\TableData.cs" />
     <Compile Include="Model\TreeItem.cs" />
     <Compile Include="Model\TreeModel.cs" />

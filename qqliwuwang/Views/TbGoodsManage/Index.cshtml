@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Bootstrap.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">淘宝商品管理</div>
+    <div class="panel-body">
+        <div id="toolbar" class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" id="importBtn">导入</button>
+            <button type="button" class="btn btn-default" id="editBtn">编辑</button>
+            <button type="button" class="btn btn-default" id="delBtn">删除</button>
+            <button type="button" class="btn btn-default" id="downloadBtn">下载模板</button>
+        </div>
+        <table id="bootstrap_table"></table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#bootstrap_table').bootstrapTable({
+            columns: [
+                { field: 'Checked', checkbox: true },
+                { field: 'Id', title: 'ID', visible: false },
+                { field: 'GoodsNumber', title: '淘宝商品ID', visible: false },
+                { field: 'Name', title: '淘宝商品名称', sort: true },
+                { field: 'Titel', title: '商品名称', },
+                { field: 'ImageUrl', title: '淘宝主图连接', visible: false },
+                { field: 'ShowImageUrl', title: '主图URL', sort: true, visible: false },
+                { field: 'DescriptionUrl', title: '商品详情URL', sort: true, visible: false },
+                { field: 'Category', title: '商品一级目录', visible: false },
+                { field: 'TaoBaoKe', title: '淘宝客连接', visible: false },
+                { field: 'TaoBaoKeShortUrl', title: '淘宝客短连接', visible: false },
+                { field: 'TaoBaoToken', title: '淘口令', visible: false },
+                { field: 'Price', title: '价格' },
+                { field: 'SalesVolume', title: '月销量' },
+                { field: 'CommissionRatio', title: '收入比', sortable: true, resizable: true },
+                { field: 'Commission', title: '佣金' },
+                { field: 'SaleMan', title: '卖家旺旺' },
+                { field: 'ShopName', title: '店铺名称' },
+                { field: 'ShopType', title: '店铺类型' },
+                { field: 'TicketId', title: '优惠券ID' },
+                { field: 'TicketTotalNum', title: '优惠券总数量' },
+                { field: 'TicketNum', title: '剩余数量' },
+                { field: 'TicketDescription', title: '优惠券说明' },
+                { field: 'TicketPrice', title: '优惠券金额' },
+                { field: 'TicketStartDate', title: '优惠券开始时间' },
+                { field: 'TicketEndDate', title: '优惠券结束时间' },
+                { field: 'TicketUrl', title: '优惠券连接' },
+                { field: 'TicketPutUrl', title: '优惠券连接' },
+                { field: 'TicketPutShortUrl', title: '优惠券短连接' },
+                { field: 'TicketPutToken', title: '优惠券淘口令' },
+                { field: 'IsPlanGoods', title: '计划商品' },
+                { field: 'GoodsType', title: '商品分类' },
+                { field: 'DownDateTime', title: '下载日期' },
+                { field: 'Sort', title: '排序号' },
+                { field: 'CreateTime', title: '创建时间' },
+                { field: 'CreateUser', title: '创建人' },
+                { field: 'UpdateTime', title: '修改时间' },
+                { field: 'UpdateUser', title: '修改人' },
+                { field: 'DeleteFlag', title: '是否删除' }],
+            method: "get",
+            url: "/TbGoodsManage/TbGoodsData",
+            pagination: true,//分页
+            sidePagination: "server",
+            idField: "Id",
+            toolbar: "#toolbar",
+            clickToSelect: true,
+            silentSort: false,
+            resizable: true,
+            //showColumns: true,
+            height: $(window).height() - 100,
+
+        });
+
+        ///下载模板
+        $("#downloadBtn").bind("click", function () {
+            window.open("/TbGoodsManage/DownloadTemplete");
+        })
+
+        $("#importBtn").bind("click", function () {
+            layerOpen("商品导入", "/TbGoodsManage/Import", "500px", "400px");
+        })
+
+        $("#editBtn").bind("click", function () {
+            var rows = $("#bootstrap_table").bootstrapTable("getSelections");
+            if (rows.length == 0) {
+                layerAlert("请选择一行!");
+                return;
+            }
+            if (rows.length > 1) {
+                layerAlert("只能选择一行!");
+                return;
+            }
+            var id = rows[0].Id;
+            location.href = "/TbGoodsManage/Edit?id=" + id;
+        })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

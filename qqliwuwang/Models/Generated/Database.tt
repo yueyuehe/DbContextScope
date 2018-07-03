@@ -17,11 +17,13 @@
 	var tables = LoadTables();
 	
 	for(var i=0;i<tables.Count;i++){ 
-	var str = tables[i].ClassName.Substring(7);
+	var str = tables[i].ClassName.Substring(2);
 	tables[i].ClassName =str.Substring(0,1).ToUpper()+str.Substring(1) ;
 	}
 	tables["t_gift_ArticleDetails"]["feature_list"].Ignore=true;
 	tables["t_gift_ArticleDetails"]["label_ids"].Ignore=true;
+	tables["sysdiagrams"].Ignore = true;	
+	
 
 /*
 	// Tweak Schema

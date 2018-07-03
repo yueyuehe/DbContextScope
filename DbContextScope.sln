@@ -7,16 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo Application", "DemoApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mehdime.Entity", "Mehdime.Entity\Mehdime.Entity.csproj", "{4830BAFD-4163-473E-B00F-65F274AC165F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{3EDFFE0D-C92B-4B16-B733-5A48E5F52467}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据", "数据", "{04C02C42-2545-438A-A8E5-52577395298C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tbPhone", "tbPhone", "{F4C58906-BC6C-476A-9887-9106E4DA15F8}"
 	ProjectSection(SolutionItems) = preProject
 		Phone.txt = Phone.txt
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaoBao", "TaoBao\TaoBao.csproj", "{DB2464FC-6AF9-43E4-8B35-6762D353047C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D960EF83-1E1D-47C4-A401-138EBA430386}"
 EndProject
@@ -27,8 +23,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design", "Design\Design.csproj", "{41AC8B8D-026E-4110-8EBB-01855C118FB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{7533F437-9454-46AE-8294-7E860A237ECA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{6F7E5BFC-51B1-4671-84F2-4E689917A19A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayuiFW", "LayuiFW\LayuiFW.csproj", "{4DC7A365-9BBA-4EFE-8D0F-FAC2D1BAB7AB}"
 EndProject
@@ -50,14 +44,6 @@ Global
 		{4830BAFD-4163-473E-B00F-65F274AC165F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4830BAFD-4163-473E-B00F-65F274AC165F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4830BAFD-4163-473E-B00F-65F274AC165F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3EDFFE0D-C92B-4B16-B733-5A48E5F52467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EDFFE0D-C92B-4B16-B733-5A48E5F52467}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EDFFE0D-C92B-4B16-B733-5A48E5F52467}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EDFFE0D-C92B-4B16-B733-5A48E5F52467}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB2464FC-6AF9-43E4-8B35-6762D353047C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB2464FC-6AF9-43E4-8B35-6762D353047C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB2464FC-6AF9-43E4-8B35-6762D353047C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB2464FC-6AF9-43E4-8B35-6762D353047C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D960EF83-1E1D-47C4-A401-138EBA430386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D960EF83-1E1D-47C4-A401-138EBA430386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D960EF83-1E1D-47C4-A401-138EBA430386}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -78,10 +64,6 @@ Global
 		{7533F437-9454-46AE-8294-7E860A237ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7533F437-9454-46AE-8294-7E860A237ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7533F437-9454-46AE-8294-7E860A237ECA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F7E5BFC-51B1-4671-84F2-4E689917A19A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F7E5BFC-51B1-4671-84F2-4E689917A19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F7E5BFC-51B1-4671-84F2-4E689917A19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F7E5BFC-51B1-4671-84F2-4E689917A19A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DC7A365-9BBA-4EFE-8D0F-FAC2D1BAB7AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DC7A365-9BBA-4EFE-8D0F-FAC2D1BAB7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC7A365-9BBA-4EFE-8D0F-FAC2D1BAB7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU

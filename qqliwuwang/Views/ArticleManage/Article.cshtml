@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Article";
+    Layout = "~/Views/Shared/_Bootstrap.cshtml";
+}
+@model Gift.Gift_Article
+
+@section style{
+    <link href="~/Content/simditor/styles/simditor.css" rel="stylesheet" />
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <textarea id="editor" placeholder="Balabala" autofocus>
+                        @Html.Raw(Model.ContentHtml)
+                    </textarea>
+                    <div id="content"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <button id="preview">预览</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Content/simditor/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="~/Content/simditor/scripts/module.js"></script>
+<script type="text/javascript" src="~/Content/simditor/scripts/hotkeys.js"></script>
+<script type="text/javascript" src="~/Content/simditor/scripts/uploader.js"></script>
+<script type="text/javascript" src="~/Content/simditor/scripts/simditor.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var editor = new Simditor({
+            textarea: $('#editor'),
+            //optional options
+            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'ol', 'ul'
+                , 'blockquote', 'code', 'table', 'link', 'image', 'hr', 'indent', 'outdent', 'alignment'],
+            pasteImage: true, //粘贴上传
+            //upload: {
+            //    url: '',
+            //    params: null,
+            //    fileKey: 'upload_file',
+            //    connectionCount: 3,
+            //    leaveConfirm: '正在上传文件，是否离开?',
+            //}
+        });
+        ///预览
+        $("#preview").bind("click", function () {
+            var node = $('.simditor');
+            var result = node.is(":hidden");
+            if (result) {　　//如果node是隐藏的则显示node元素，否则隐藏
+                $("#content").hide();
+                node.show();
+            } else {
+                node.hide();
+                var html = editor.sync();
+                $("#content").html(html);
+                $("#content").show();
+            }
+        })
+
+        
+    })
+</script>
