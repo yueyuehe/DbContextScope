@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 
 namespace Common.Helpers
@@ -118,5 +119,58 @@ namespace Common.Helpers
             return str;
         }
         #endregion
+
+        #region 创建新的文件名称 yyyyMMddHHmmss_guid的前4位
+
+        /// <summary>
+        /// 创建新的文件名称 yyyyMMddHHmmss_guid的前4位
+        /// </summary>
+        /// <returns></returns>
+        public static string CreateNewFileName(string file)
+        {
+            var arr = file.Split('.');
+            var filetype = arr[arr.Length - 1];
+            return string.Format("{0}_{1}.{2}", DateTime.Now.ToString("yyyyMMddHHmmss"), Guid.NewGuid().ToString().Substring(0, 4), filetype);
+        }
+
+        #endregion
+
+
+        #region 创建文件路径
+
+        /// <summary>
+        /// 创建文件夹
+        /// </summary>
+        /// <returns></returns>
+        public static string CreateFolderPath(PathType pathType)
+        {
+            var date = DateTime.Now;
+            switch (pathType)
+            {
+                case PathType.Day:
+                    return Path.Combine(date.ToString("yyyy"), date.ToString("yyyyMM"), date.ToString("yyyyMMdd"));
+                case PathType.Year:
+                    return Path.Combine(date.ToString("yyyy"));
+                case PathType.Month:
+                    return Path.Combine(date.ToString("yyyy"), date.ToString("yyyyMM"));
+                default:
+                    return "";
+
+            }
+
+
+        }
+
+
+
+
+
+        #endregion
+
+    }
+
+    public enum PathType
+    {
+        Year, Month, Day
     }
 }

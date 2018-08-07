@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "ArticleList";
+    ViewBag.Title = "文章管理";
     Layout = "~/Views/Shared/_Bootstrap.cshtml";
 }
 
@@ -29,7 +29,7 @@
                 { field: "Source", title: '来源', visible: true },
                 { field: "ImageUrl", title: '主图URL', visible: false },
                 { field: "Excerpt", title: '摘要', visible: true },
-                { field: "HeadContent", title: '导语', visible: true },
+                { field: "HeadContent", title: '导语', visible: false },
                 { field: "Weight", title: '排序', visible: false },
                 { field: "Hits", title: '点击数', visible: true },
                 { field: "IsDigest", title: '置顶', visible: true },
@@ -68,8 +68,7 @@
                 return;
             }
             var id = rows[0].Id;
-            location.href = "/TbGoodsManage/Edit?id=" + id;
+            location.href = "/ArticleManage/Article?id=" + id;
         })
     })
-
 </script>

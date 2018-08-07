@@ -39,7 +39,9 @@ namespace SpiderConsole
             var list = db.Query<ArticleDetail>("SELECT * FROM t_gift_ArticleDetails");
             foreach (var item in list)
             {
-                var url = $"http://www.liwushuo.com/posts/{item.PID}/content";
+                //var url = $"http://www.liwushuo.com/posts/{item.PID}/content";
+                var url = $"http://www.liwushuo.com/posts/{item.PID}";
+
                 site.AddStartUrl(url);
             }
             var spider = Spider.Create(site, new GiftPageProcessor())

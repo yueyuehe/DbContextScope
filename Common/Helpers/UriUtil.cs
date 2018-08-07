@@ -70,5 +70,7 @@ namespace Common.Helpers
             string returnUrl = string.Format("{0}{1}",Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, string.Empty) , VirtualPathUtility.ToAbsolute(relativePath));
             return returnUrl;
         }
+
+
     }
 }

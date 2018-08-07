@@ -59,7 +59,7 @@ namespace SpiderConsole
             }
         }
 
-        static void Main(string[] args)
+        public void Main(string[] args)
         {
             while (true)
             {

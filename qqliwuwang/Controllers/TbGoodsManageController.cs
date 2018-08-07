@@ -181,7 +181,6 @@ namespace qqliwuwang.Controllers
                         else
                         {
                             item.IsPlanGoods = "0";
-
                         }
                     }
                     bll.Save(list);

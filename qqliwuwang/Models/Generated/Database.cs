@@ -163,6 +163,42 @@ namespace Gift
 
 
 
+
+
+		[Column] public string Type { get; set; }
+
+
+
+
+
+		[Column] public string Image { get; set; }
+
+
+
+
+
+		[Column] public string Title { get; set; }
+
+
+
+
+
+		[Column] public DateTime? CreateTime { get; set; }
+
+
+
+
+
+		[Column] public string PID { get; set; }
+
+
+
+
+
+		[Column] public string Remark { get; set; }
+
+
+
 	}
 
     
@@ -481,6 +517,24 @@ namespace Gift
 
 
 
+
+
+		[Column] public string Category { get; set; }
+
+
+
+
+
+		[Column] public DateTime? PublicTime { get; set; }
+
+
+
+
+
+		[Column] public string Keyword { get; set; }
+
+
+
 	}
 
     
@@ -489,7 +543,9 @@ namespace Gift
 
 
 
-	[PrimaryKey("Id", AutoIncrement=false)]
+	[PrimaryKey("Id")]
+
+
 
 
 	[ExplicitColumns]

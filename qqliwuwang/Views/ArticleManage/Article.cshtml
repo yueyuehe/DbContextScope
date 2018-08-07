@@ -1,27 +1,140 @@
 ﻿
 @{
-    ViewBag.Title = "Article";
+    ViewBag.Title = "文章编辑";
     Layout = "~/Views/Shared/_Bootstrap.cshtml";
 }
-@model Gift.Gift_Article
+@model Gift.Qq_Article
 
 @section style{
     <link href="~/Content/simditor/styles/simditor.css" rel="stylesheet" />
 }
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <textarea id="editor" placeholder="Balabala" autofocus>
-                        @Html.Raw(Model.ContentHtml)
-                    </textarea>
-                    <div id="content"></div>
+                    <form class="form-horizontal" action="/ArticleManage/Save" method="post">
+                        @Html.HiddenFor(p => p.Id)
+                        <div class="form-group">
+                            <label for="Title" class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(p => p.Title, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Author" class="col-sm-2 control-label">作者</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(p => p.Author, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Source" class="col-sm-2 control-label">来源</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(p => p.Source, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Excerpt" class="col-sm-2 control-label">摘要</label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(p => p.Excerpt, new { @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Keyword" class="col-sm-2 control-label">关键字</label>
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(p => p.Keyword, new { @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IsDigest" class="col-sm-2 control-label">置顶</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">
+                                    @Html.RadioButton("IsDigest", 0, Model.IsDigest == "0") 否
+                                </label>
+                                <label class="radio-inline">
+                                    @Html.RadioButton("IsDigest", 1, Model.IsDigest == "1") 是
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IsDisplay" class="col-sm-2 control-label">显示</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">
+                                    @Html.RadioButton("IsDisplay", 0, Model.IsDisplay == "0") 否
+                                </label>
+                                <label class="radio-inline">
+                                    @Html.RadioButton("IsDisplay", 1, Model.IsDisplay == "1") 是
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="PublicTime" class="col-sm-2 control-label">发布时间</label>
+                            <div class="col-sm-10 form-inline">
+                                @Html.TextBoxFor(p => p.PublicTime, new { @class = "form-control", type = "date" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="HeadContent" class="col-sm-2 control-label">内容</label>
+                            <div class="col-sm-10">
+                                <textarea id="HeadContent" name="HeadContent" placeholder="Balabala" autofocus>
+                                    @Html.Raw(Model.HeadContent)
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Category" class="col-sm-2 control-label">类别</label>
+                            <div class="col-sm-10">
+                                @foreach (var item in (List<qqliwuwang.BLL.ArticleCategory>)ViewData["Category"])
+                                {
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div>
+                                            @item.CategotyName
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        @foreach (var temp in item.Categoties)
+                                            {
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <div>
+                                                    @temp.GroupName
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                                @foreach (var cate in temp.Items)
+                                                        {
+                                                <label class="checkbox-inline">
+                                                    @if ((Model.Category ?? "").Contains(cate.Key))
+                                                                {
+                                                    <input type="checkbox" name="Category" checked="checked" value="@cate.Key">@cate.Value
+                                                                }
+                                                                else
+                                                                {
+                                                    <input type="checkbox" name="Category" value="@cate.Key">@cate.Value
+                                                                }
+                                                </label>
+                                                        }
+                                                <input type="button" name="selectAll" class="btn btn-success btn-xs" value="全选" />
+                                            </div>
+                                        </div>
+                                            }
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="submit" value="保 存" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-lg-3">
-            <button id="preview">预览</button>
+            <button id="btn_format" class="btn btn-default">格式化</button>
         </div>
     </div>
 </div>
@@ -30,37 +143,107 @@
 <script type="text/javascript" src="~/Content/simditor/scripts/hotkeys.js"></script>
 <script type="text/javascript" src="~/Content/simditor/scripts/uploader.js"></script>
 <script type="text/javascript" src="~/Content/simditor/scripts/simditor.js"></script>
+<script src="~/Content/simditor/scripts/simditor-mark.js"></script>
+
 <script type="text/javascript">
     $(function () {
         var editor = new Simditor({
-            textarea: $('#editor'),
+            textarea: $('#HeadContent'),
             //optional options
-            toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'ol', 'ul'
-                , 'blockquote', 'code', 'table', 'link', 'image', 'hr', 'indent', 'outdent', 'alignment'],
+            toolbar: ['mark', 'title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', 'ol', 'ul'
+                , 'blockquote', 'code', 'table', 'link', 'image', 'hr', 'indent', 'outdent', 'alignment'/*, "formmat"*/],
             pasteImage: true, //粘贴上传
-            //upload: {
-            //    url: '',
-            //    params: null,
-            //    fileKey: 'upload_file',
-            //    connectionCount: 3,
-            //    leaveConfirm: '正在上传文件，是否离开?',
-            //}
-        });
-        ///预览
-        $("#preview").bind("click", function () {
-            var node = $('.simditor');
-            var result = node.is(":hidden");
-            if (result) {　　//如果node是隐藏的则显示node元素，否则隐藏
-                $("#content").hide();
-                node.show();
-            } else {
-                node.hide();
-                var html = editor.sync();
-                $("#content").html(html);
-                $("#content").show();
+            upload: {
+                url: '/FileUpload/FileUploadSingle',
+                params: null,
+                fileKey: 'upload_file',
+                connectionCount: 3,
+                leaveConfirm: '正在上传文件，是否离开?',
             }
+        });
+        //内容改变触发事件
+        editor.on('valuechanged', function (e, src) {
+            console.log(e);
+            console.log(src);
+        })
+        //当光标位置或所选文本发生更改时，事件将触发
+        editor.on('selectionchanged', function (e) {
+
         })
 
-        
+        //粘贴内容并调用setValue时会触发事件
+        editor.on('decorate', function (e, jq) {
+
+        })
+        //调用getValue和sync时会触发事件。
+        editor.on('undecorate', function (e, jq) {
+
+        })
+
+        //将内容粘贴到编辑器中时会触发事件。
+        editor.on('pasting', function (e, jq) {
+
+        })
+        //同步方法
+        //editor.sync();
+        //设置
+        //editor.setValue(val)
+        //获取
+        //editor.getValue(val)
+
+
+        //绑定全选
+        $("input[name='selectAll']").bind("click", function () {
+            var div = $(this).parent();
+            var items = div.find("input[type='checkbox']");
+            $.each(items, function (i, item) {
+                $(item).attr("checked", "checked");
+            })
+        })
+
+        //格式化按钮点击
+        $("#btn_format").bind("click", function () {
+            var content = editor.getValue();
+            content = content.replace(/[\s]+/gi, ' ');
+            content = content.replace(/[\s]+>/gi, '>');
+            content = content.replace(/<([\/\s]*)(div)([^>]*)>/gi, '<$1p$3>');
+            content = content.replace(/(<([\/\s]*)([^>]*)>)(\s|&nbsp;|\　|\ )+/gi, '$1');
+            content = content.replace(/(\s*<[\s]*br[^>]*>\s*)+/gi, '<br/>');
+            content = content.replace(/(^\s*<[\s]*br[^>]*>|<[\s]*br[^>]*>\s*$)/gi, '');
+            content = content.replace(/(<[\/\s]*(p|hr|h1|h2|h3|h4|h5|h6)[^>]*>)\s*(<[\s]*br[^>]*>)/gi, '$1');
+            content = content.replace(/(<[\s]*br[^>]*>)\s*(<[\/\s]*(p|hr|h1|h2|h3|h4|h5|h6)[^>]*>)/gi, '$2');
+            contentre = content.replace(/<(!=iframe|embed|br|hr|tr|td)[^>]+>\s*<[\s]*\/[\s]*(!=iframe|embed|br|hr|tr|td)[^>]+>/gi, '');
+            while (contentre != content) {
+                content = contentre;
+                contentre = content.replace(/<(!=iframe|embed|br|hr|tr|td)[^>]+>\s*<[\s]*\/[\s]*(!=iframe|embed|br|hr|tr|td)[^>]+>/gi, '');
+            }
+            content = content.replace(/<([\/\s]*)(p)([^>]*)>(\s*<[^>]*(br)[^>]+>\s*)*<([\/\s]*)\/([\/\s]*)(p)([^>]*)>/gi, '');
+            content = content.replace(/(<[\s]*p[^>]*>[\s]*)*(<[\s]*(embed|img|iframe)[^>]*>)([\s]*<[\s]*\/[\s]*p[^>]*>)*/gi, '<p style="text-align: center;">$2</p>');
+            editor.setValue(content);
+            editor.sync();
+            //替换图片地址
+            var imgs = $(".simditor-body").find("img");
+            for (var i = 0; i < imgs.length; i++) {
+                var url = $(imgs[i]).attr("src");
+                $(imgs[i]).attr("width", "80%");
+                $.ajax({
+                    type: "POST",
+                    url: "/FileUpload/DownloadWebFile",
+                    data: { "url": url },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Success) {
+                            $(imgs[i]).attr("src", data.UserData.Url);
+                        } else {
+                            console.log(data.Message);
+                        }
+                    }
+                });
+            }
+            //获取数据
+            editor.sync();
+            alert("格式化完成！");
+        });
     })
 </script>

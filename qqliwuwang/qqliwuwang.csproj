@@ -102,12 +102,21 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -165,18 +174,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BLL\ArticleManage.cs" />
     <Compile Include="BLL\BaseBLL.cs" />
     <Compile Include="BLL\FileManage.cs" />
+    <Compile Include="BLL\SysConfigBLL.cs" />
     <Compile Include="BLL\TbGoodsManage.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ArticleManageController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QQArticleController.cs" />
     <Compile Include="Controllers\TbGoodsManageController.cs" />
+    <Compile Include="Entity\Account.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CharHelper.cs" />
+    <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Helper\DBHelper.cs" />
+    <Compile Include="Helper\SimditorUploadReturnModel.cs" />
     <Compile Include="Models\Generated\Database.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,7 +203,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Config\ArticleCategory.xml" />
+    <Content Include="App_Data\Config\ArticleCategory.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -381,6 +400,8 @@
     <Content Include="Content\layer\theme\default\loading-0.gif" />
     <Content Include="Content\layer\theme\default\loading-1.gif" />
     <Content Include="Content\layer\theme\default\loading-2.gif" />
+    <Content Include="Content\simditor\scripts\simditor-formmat.js" />
+    <Content Include="Content\simditor\scripts\simditor-mark.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Image\slt.png" />
     <Content Include="Content\layui\css\layui.css" />
@@ -563,7 +584,9 @@
     <Content Include="Scripts\vue.min.js" />
     <Content Include="Scripts\wangEditor\wangEditor.js" />
     <Content Include="Scripts\wangEditor\wangEditor.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -591,7 +614,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\" />
-    <Folder Include="Entity\" />
+    <Folder Include="Views\FileUp\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

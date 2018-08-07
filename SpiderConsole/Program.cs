@@ -8,15 +8,15 @@ namespace SpiderConsole
 {
     class Program
     {
-       // static void Main(string[] args)
-       // {
-       //     var model = new SpiderMain();
-       //     model.SatrtSpider();
-       //     Console.Read();
-       //
-       //     //var model = new GiftDetailsSpider();
-       //     //model.SatrtSpider();
-       //     //Console.Read();
-       // }
+        static void Main(string[] args)
+        {
+            var model = new SpiderMain();
+            model.SatrtSpider();
+            Console.Read();
+
+            //var model = new GiftDetailsSpider();
+            //model.SatrtSpider();
+            //Console.Read();
+        }
     }
 }

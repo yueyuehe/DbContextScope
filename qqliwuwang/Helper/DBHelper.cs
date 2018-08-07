@@ -11,7 +11,7 @@ namespace qqliwuwang.Helper
     public class DBHelper
     {
         /// <summary>
-        /// 返回新的Db获取线程中国的DB
+        /// 返回新的Db获取线程中的DB
         /// </summary>
         /// <returns></returns>
         public static GiftDB CurrentDB()

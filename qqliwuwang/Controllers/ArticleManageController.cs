@@ -9,30 +9,37 @@ using System.Web.Mvc;
 
 namespace qqliwuwang.Controllers
 {
+
     public class ArticleManageController : Controller
     {
         ArticleManage artBll = new ArticleManage();
-      
+
         /// <summary>
         /// 转到文章详情页面
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Article(int id = 4028)
+        public ActionResult Article(int? id)
         {
             try
             {
-                var model = artBll.FindById(id);
+                if (id == null)
+                {
+                    return View("ArticleList");
+                }
+                var model = artBll.FindById(id.Value);
+                var Category = new SysConfigBLL().GetArticleCategorys();
+                ViewData["Category"] = Category;
                 return View(model);
             }
             catch (Exception ex)
             {
-                return View(new Gift_Article());
+                return View(new Qq_Article());
             }
         }
 
         /// <summary>
-        ///  文章列表
+        ///  转到文章列表页面
         /// </summary>
         /// <returns></returns>
         public ActionResult ArticleList()
@@ -42,7 +49,7 @@ namespace qqliwuwang.Controllers
         }
 
         /// <summary>
-        /// 获取列表
+        /// 获取文章列表数据
         /// </summary>
         /// <param name="pageModel"></param>
         /// <param name="queryModel"></param>
@@ -59,5 +66,44 @@ namespace qqliwuwang.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 保存方法
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Save(Qq_Article model)
+        {
+            model.Category = Request["Category"];
+            if (model.IsNew())
+            {
+                model.UpdateTime = DateTime.Now;
+                model.Created = DateTime.Now;
+                model.CreateTime = DateTime.Now;
+                model.CreateUser = Helper.CommonHelper.LoginUser().Id;
+                model.UpdateUser = Helper.CommonHelper.LoginUser().Id;
+                model.DeleteFlag = Helper.DeleteFlag.NO.ToString();
+                model.Insert();
+            }
+            else
+            {
+                var oldModel = artBll.FindById(model.Id);
+                oldModel.Title = model.Title;
+                oldModel.Excerpt = model.Excerpt;
+                oldModel.HeadContent = model.HeadContent;
+                oldModel.Author = model.Author;
+                oldModel.Category = model.Category;
+                oldModel.IsDisplay = model.IsDisplay;
+                oldModel.IsDigest = model.IsDigest;
+                oldModel.Source = model.Source;
+                oldModel.PublicTime = model.PublicTime;
+                oldModel.Keyword = model.Keyword;
+                oldModel.UpdateTime = DateTime.Now;
+                oldModel.UpdateUser = Helper.CommonHelper.LoginUser().Id;
+                oldModel.Update();
+            }
+            return RedirectToAction("ArticleList");
+        }
     }
 }

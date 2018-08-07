@@ -12,7 +12,13 @@ namespace qqliwuwang.BLL
     public abstract class BaseBLL<T>
     {
 
+
         protected Gift.GiftDB CurrentDB { get { return Helper.DBHelper.CurrentDB(); } }
+
+        /// <summary>
+        /// 当前用户
+        /// </summary>
+        public Entity.Account LoginUser { get { return CommonHelper.LoginUser(); } }
 
         /// <summary>
         /// 根据ID获取对象

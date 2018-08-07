@@ -23,19 +23,19 @@ namespace qqliwuwang.BLL
         /// <returns></returns>
         public override Page<Qq_Article> Page(long page, long limit, Qq_Article queryModel, string orderFild, string isAsc)
         {
-            var sql = new StringBuilder("select * from t_gift_Article where 1=1 ");
+            var sql = new StringBuilder("select * from t_qq_Articles where 1=1 ");
             var param = new List<SqlParameter>();
-            if (string.IsNullOrEmpty(queryModel.Title))
+            if (!string.IsNullOrEmpty(queryModel.Title))
             {
                 sql.Append(" and Title like @Title ");
                 param.Add(new SqlParameter("@Title", queryModel.Title));
             }
-            if (string.IsNullOrEmpty(queryModel.Author))
+            if (!string.IsNullOrEmpty(queryModel.Author))
             {
                 sql.Append(" and Author like @Author ");
                 param.Add(new SqlParameter("@Author", queryModel.Author));
             }
-            if (string.IsNullOrEmpty(queryModel.HeadContent))
+            if (!string.IsNullOrEmpty(queryModel.HeadContent))
             {
                 sql.Append(" and HeadContent like @HeadContent ");
                 param.Add(new SqlParameter("@HeadContent", queryModel.HeadContent));

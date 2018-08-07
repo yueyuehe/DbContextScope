@@ -36,8 +36,22 @@ namespace SpiderConsole
     {
         protected override void Handle(Page page)
         {
-            var result = page.Selectable.XPath("//div[@class='content']");
-            page.AddResultItem("key", result.GetValue());
+            //  var result = page.Selectable.XPath("//div[@class='content']");
+            var result = page.Selectable.XPath("//div[@class='post-content']");
+
+            var pid = page.Url.Substring(page.Url.LastIndexOf("/") + 1);
+            //内容
+            var content = result.XPath("//div[@class='content']");
+            //标题
+            var title = result.XPath("//h1");
+            //主图URL
+            var image = result.XPath("//div[@class='cover']").Css("img", "src");
+
+            page.AddResultItem("pid", pid);
+            page.AddResultItem("image", image.GetValue());
+            page.AddResultItem("title", title.GetValue());
+            page.AddResultItem("content", content.GetValue());
+            //page.AddResultItem("key", result.GetValue());
 
         }
     }
@@ -51,16 +65,23 @@ namespace SpiderConsole
         /// <param name="spider"></param>
         public override void Process(IEnumerable<ResultItems> resultItems, ISpider spider)
         {
+
             var list = new List<Article>();
             foreach (var item in resultItems)
             {
                 var model = new Article
                 {
-                    ContentHtml = item.GetResultItem("key")
+                    Type = "1",
+                    Remark = "礼物说",
+                    CreateTime = DateTime.Now,
+                    PID = item.GetResultItem("pid"),
+                    ContentHtml = item.GetResultItem("content"),
+                    Title = item.GetResultItem("title"),
+                    Image = item.GetResultItem("image")
                 };
                 list.Add(model);
             }
-          
+
             foreach (var item in list)
             {
                 GiftDB.GetInstance().Insert(item);

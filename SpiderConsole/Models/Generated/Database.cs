@@ -137,7 +137,55 @@ namespace qqliwuwang
 
     
 
-	[TableName("dbo.t_gift_article")]
+	[TableName("dbo.sysdiagrams")]
+
+
+
+	[PrimaryKey("diagram_id")]
+
+
+
+
+	[ExplicitColumns]
+
+    public partial class Ram : GiftDB.Record<Ram>  
+    {
+
+
+
+		[Column] public string name { get; set; }
+
+
+
+
+
+		[Column] public int principal_id { get; set; }
+
+
+
+
+
+		[Column] public int diagram_id { get; set; }
+
+
+
+
+
+		[Column] public int? version { get; set; }
+
+
+
+
+
+		[Column] public byte[] definition { get; set; }
+
+
+
+	}
+
+    
+
+	[TableName("dbo.t_gift_Article")]
 
 
 
@@ -160,6 +208,42 @@ namespace qqliwuwang
 
 
 		[Column] public string ContentHtml { get; set; }
+
+
+
+
+
+		[Column] public string Type { get; set; }
+
+
+
+
+
+		[Column] public string Image { get; set; }
+
+
+
+
+
+		[Column] public string Title { get; set; }
+
+
+
+
+
+		[Column] public DateTime? CreateTime { get; set; }
+
+
+
+
+
+		[Column] public string PID { get; set; }
+
+
+
+
+
+		[Column] public string Remark { get; set; }
 
 
 
@@ -328,6 +412,414 @@ namespace qqliwuwang
 
 
 		[Column] public string PID { get; set; }
+
+
+
+	}
+
+    
+
+	[TableName("dbo.t_qq_Articles")]
+
+
+
+	[PrimaryKey("Id")]
+
+
+
+
+	[ExplicitColumns]
+
+    public partial class Ticle : GiftDB.Record<Ticle>  
+    {
+
+
+
+		[Column] public int Id { get; set; }
+
+
+
+
+
+		[Column] public int? Category_Id { get; set; }
+
+
+
+
+
+		[Column] public string Title { get; set; }
+
+
+
+
+
+		[Column] public long? Article_Type { get; set; }
+
+
+
+
+
+		[Column] public string Highlight { get; set; }
+
+
+
+
+
+		[Column] public string Author { get; set; }
+
+
+
+
+
+		[Column] public string Source { get; set; }
+
+
+
+
+
+		[Column] public string ImageUrl { get; set; }
+
+
+
+
+
+		[Column] public string Excerpt { get; set; }
+
+
+
+
+
+		[Column] public string HeadContent { get; set; }
+
+
+
+
+
+		[Column] public int? Weight { get; set; }
+
+
+
+
+
+		[Column] public int? Hits { get; set; }
+
+
+
+
+
+		[Column] public string IsDigest { get; set; }
+
+
+
+
+
+		[Column] public string IsDisplay { get; set; }
+
+
+
+
+
+		[Column] public DateTime? Modified { get; set; }
+
+
+
+
+
+		[Column] public DateTime? Created { get; set; }
+
+
+
+
+
+		[Column] public string TagContent { get; set; }
+
+
+
+
+
+		[Column] public DateTime? CreateTime { get; set; }
+
+
+
+
+
+		[Column] public string CreateUser { get; set; }
+
+
+
+
+
+		[Column] public DateTime? UpdateTime { get; set; }
+
+
+
+
+
+		[Column] public string UpdateUser { get; set; }
+
+
+
+
+
+		[Column] public string DeleteFlag { get; set; }
+
+
+
+
+
+		[Column] public string Category { get; set; }
+
+
+
+	}
+
+    
+
+	[TableName("dbo.t_qq_TbGoods")]
+
+
+
+	[PrimaryKey("Id")]
+
+
+
+
+	[ExplicitColumns]
+
+    public partial class Good : GiftDB.Record<Good>  
+    {
+
+
+
+		[Column] public int Id { get; set; }
+
+
+
+
+
+		[Column] public string GoodsNumber { get; set; }
+
+
+
+
+
+		[Column] public string Name { get; set; }
+
+
+
+
+
+		[Column] public string Title { get; set; }
+
+
+
+
+
+		[Column] public string ImageUrl { get; set; }
+
+
+
+
+
+		[Column] public string HeadContent { get; set; }
+
+
+
+
+
+		[Column] public string ShowImageUrl { get; set; }
+
+
+
+
+
+		[Column] public string DescriptionUrl { get; set; }
+
+
+
+
+
+		[Column] public string Category { get; set; }
+
+
+
+
+
+		[Column] public string TaoBaoKe { get; set; }
+
+
+
+
+
+		[Column] public string TaoBaoKeShortUrl { get; set; }
+
+
+
+
+
+		[Column] public string TaoBaoToken { get; set; }
+
+
+
+
+
+		[Column] public decimal? Price { get; set; }
+
+
+
+
+
+		[Column] public int? SalesVolume { get; set; }
+
+
+
+
+
+		[Column] public decimal? CommissionRatio { get; set; }
+
+
+
+
+
+		[Column] public decimal? Commission { get; set; }
+
+
+
+
+
+		[Column] public string SaleMan { get; set; }
+
+
+
+
+
+		[Column] public string ShopName { get; set; }
+
+
+
+
+
+		[Column] public string ShopType { get; set; }
+
+
+
+
+
+		[Column] public string TicketId { get; set; }
+
+
+
+
+
+		[Column] public int? TicketTotalNum { get; set; }
+
+
+
+
+
+		[Column] public int? TicketNum { get; set; }
+
+
+
+
+
+		[Column] public string TicketDescription { get; set; }
+
+
+
+
+
+		[Column] public decimal? TicketPrice { get; set; }
+
+
+
+
+
+		[Column] public DateTime? TicketStartDate { get; set; }
+
+
+
+
+
+		[Column] public DateTime? TicketEndDate { get; set; }
+
+
+
+
+
+		[Column] public string TicketUrl { get; set; }
+
+
+
+
+
+		[Column] public string TicketPutUrl { get; set; }
+
+
+
+
+
+		[Column] public string TicketPutShortUrl { get; set; }
+
+
+
+
+
+		[Column] public string TicketPutToken { get; set; }
+
+
+
+
+
+		[Column] public long? GoodsType { get; set; }
+
+
+
+
+
+		[Column] public string IsPlanGoods { get; set; }
+
+
+
+
+
+		[Column] public DateTime? UpdateTime { get; set; }
+
+
+
+
+
+		[Column] public DateTime? DownDateTime { get; set; }
+
+
+
+
+
+		[Column] public int? Sort { get; set; }
+
+
+
+
+
+		[Column] public DateTime? CreateTime { get; set; }
+
+
+
+
+
+		[Column] public string CreateUser { get; set; }
+
+
+
+
+
+		[Column] public string UpdateUser { get; set; }
+
+
+
+
+
+		[Column] public string DeleteFlag { get; set; }
 
 
 
