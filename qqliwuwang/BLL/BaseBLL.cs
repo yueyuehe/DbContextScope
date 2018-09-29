@@ -112,12 +112,13 @@ namespace qqliwuwang.BLL
         /// <summary>
         /// 分页
         /// </summary>
-        /// <param name="page"></param>
-        /// <param name="limit"></param>
-        /// <param name="sql"></param>
-        /// <param name="param"></param>
+        /// <param name="page">当前页</param>
+        /// <param name="limit">每页数量</param>
+        /// <param name="queryModel">数据</param>
+        /// <param name="orderFild">排序列</param>
+        /// <param name="orderType">排序方式</param>
         /// <returns></returns>
-        public abstract Page<T> Page(long page, long limit, T queryModel, string orderFild, string isAsc);
+        public abstract Page<T> Page(long page, long limit, T queryModel, string orderFild, string orderType);
 
     }
 }

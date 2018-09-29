@@ -1,4 +1,5 @@
-﻿using Gift;
+﻿using HWAdmin.Common.Model;
+using Gift;
 using qqliwuwang.BLL;
 using System;
 using System.Collections.Generic;
@@ -11,49 +12,20 @@ namespace qqliwuwang.Controllers
     public class HomeController : Controller
     {
         ArticleManage artBll = new ArticleManage();
-        public ActionResult Index()
+        public ActionResult Index(PetaPoco.Page<Qq_Article> page, Qq_Article queryModel)
         {
-            return View();
-        }
-        public ActionResult Article(int id = 4028)
-        {
-            try
+            if (page.ItemsPerPage == 0)
             {
-                var model = artBll.FindById(id);
-                return View(model);
+                page.ItemsPerPage = 20;
             }
-            catch (Exception ex)
+            if (page.CurrentPage == 0)
             {
-                return View(new Gift_Article());
+                page.CurrentPage = 1;
             }
+            page = artBll.Page(page.CurrentPage, page.ItemsPerPage, queryModel, nameof(queryModel.PublicTime), "DESC");
+            return View(page);
         }
 
-        public ActionResult Article2(int id = 4028)
-        {
-            try
-            {
-                var model = artBll.FindById(id);
-                return View(model);
-            }
-            catch (Exception ex)
-            {
-                return View(new Gift_Article());
-            }
-        }
-
-        public ActionResult ArticleTest(int id = 4028)
-        {
-            try
-            {
-                var model = artBll.FindById(id);
-                return View(model);
-            }
-            catch (Exception ex)
-            {
-                return View(new Gift_Article());
-            }
-        }
-        
 
         public ActionResult About()
         {

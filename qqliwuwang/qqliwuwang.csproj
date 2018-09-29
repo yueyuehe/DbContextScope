@@ -180,7 +180,7 @@
     <Compile Include="BLL\FileManage.cs" />
     <Compile Include="BLL\SysConfigBLL.cs" />
     <Compile Include="BLL\TbGoodsManage.cs" />
-    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ArticleViewController.cs" />
     <Compile Include="Controllers\ArticleManageController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -602,14 +602,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ArticleManage\Article.cshtml" />
     <Content Include="Vue\GoodsItem.vue" />
-    <Content Include="Views\Article\Index.cshtml" />
-    <Content Include="Views\Article\Content.cshtml" />
+    <Content Include="Views\ArticleView\Index.cshtml" />
+    <Content Include="Views\ArticleView\Content.cshtml" />
     <Content Include="Views\TbGoodsManage\Index.cshtml" />
     <Content Include="Views\TbGoodsManage\Edit.cshtml" />
     <Content Include="Views\TbGoodsManage\Import.cshtml" />
     <Content Include="Views\Shared\_Bootstrap.cshtml" />
-    <Content Include="Views\Home\ArticleTest.cshtml" />
-    <Content Include="Views\Home\Article2.cshtml" />
     <Content Include="Views\ArticleManage\ArticleList.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -623,9 +621,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{d960ef83-1e1d-47c4-a401-138eba430386}</Project>
-      <Name>Common</Name>
+    <ProjectReference Include="..\HWAdmin.Common\HWAdmin.Common.csproj">
+      <Project>{D960EF83-1E1D-47C4-A401-138EBA430386}</Project>
+      <Name>HWAdmin.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\LayuiFW\LayuiFW.csproj">
       <Project>{4dc7a365-9bba-4efe-8d0f-fac2d1bab7ab}</Project>

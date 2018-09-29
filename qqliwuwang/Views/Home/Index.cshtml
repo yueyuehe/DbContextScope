@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@model PetaPoco.Page<Gift.Qq_Article>
 
 @section style{
     <style>
@@ -31,64 +32,46 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="container-fluid">
-            <div class="row">
+            @{var count = 0; }
+            @for (var index = 0; index < Model.Items.Count; index++)
+            {
+                var item = Model.Items[index];
+                var showHeader = (index) % 4 == 0;
+                if (showHeader)
+                {
+                    count = 1;
+                }
+                else
+                {
+                    count++;
+                }
+                var showfoot = false;
+                if (count == 4 || index + 1 >= Model.Items.Count)
+                {
+                    showfoot = true;
+                }
+
+                @(showHeader ? new MvcHtmlString("<div class=\"row\">") : new MvcHtmlString(""))
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="thumbnail">
-                        <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>AIDU/爱度 A1蓝牙音箱无线手机通A1蓝牙音箱无线手机通用A1蓝牙音箱无线手机通用A1蓝牙音箱无线手机通用A1蓝牙音箱无线手机通用用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率</p>
+                    <a href="http://www.baidu.com" style="text-decoration : none">
+                        <div class="thumbnail">
+                            <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
+                            <div class="caption">
+                                <h3>@item.Title</h3>
+                                <p>@item.Excerpt</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="thumbnail">
-                        <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="thumbnail">
-                        <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="thumbnail">
-                        <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="thumbnail">
-                        <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                    <div class="thumbnail">
-                        <img src="http://img.alicdn.com/bao/uploaded/i2/2330426103/TB1jF77s9BYBeNjy0FeXXbnmFXa_!!0-item_pic.jpg" alt="AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率">
-                        <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>AIDU/爱度 A1蓝牙音箱无线手机通用迷你苹果音响发光影响户外家用超重低音喇叭小钢炮便携式插卡播放器大功率</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @(showfoot ? new MvcHtmlString("</div>") : new MvcHtmlString(""))
+            }
         </div>
     </div>
+    <!--当前页-->
+    @Html.HiddenFor(p => p.CurrentPage);
+    <!--总页数-->
+    @Html.HiddenFor(p => p.TotalPages);
     <div class="panel-footer">
         <div class="container-fluid">
             <div class="row">
@@ -108,4 +91,3 @@
         </div>
     </div>
 </div>
-

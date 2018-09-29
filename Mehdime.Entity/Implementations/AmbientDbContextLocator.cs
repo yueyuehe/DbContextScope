@@ -12,6 +12,11 @@ namespace Mehdime.Entity
 {
     public class AmbientDbContextLocator : IAmbientDbContextLocator
     {
+        /// <summary>
+        /// 获取
+        /// </summary>
+        /// <typeparam name="TDbContext"></typeparam>
+        /// <returns></returns>
         public TDbContext Get<TDbContext>() where TDbContext : DbContext
         {
             var ambientDbContextScope = DbContextScope.GetAmbientScope();

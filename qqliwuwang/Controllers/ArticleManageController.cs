@@ -1,4 +1,4 @@
-﻿using Common.Model;
+﻿using HWAdmin.Common.Model;
 using Gift;
 using qqliwuwang.BLL;
 using System;

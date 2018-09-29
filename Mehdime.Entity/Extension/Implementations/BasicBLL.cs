@@ -22,7 +22,11 @@ namespace Mehdime.Entity.Extension
                 return this._dbContextScopeFactory;
             }
         }
-        private IBasicDAL<TEntity> basicDal = new BasicDAL<TEntity, TDbContext>();
+
+        /// <summary>
+        /// 由子类传递
+        /// </summary>
+        protected IBasicDAL<TEntity> basicDal;// = new BasicDAL<TEntity, TDbContext>();
 
         #region 数据操作
         public virtual void Update(TEntity entity)
@@ -54,7 +58,6 @@ namespace Mehdime.Entity.Extension
                 basicDal.Add(entity);
                 dbContextScope.SaveChanges();
             }
-
         }
 
         /// <summary>  

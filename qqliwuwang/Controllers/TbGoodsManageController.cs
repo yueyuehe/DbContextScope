@@ -1,5 +1,5 @@
-﻿using Common.Extensions;
-using Common.Model;
+﻿using HWAdmin.Common.Extensions;
+using HWAdmin.Common.Model;
 using Gift;
 using LayuiFW.Model;
 using qqliwuwang.BLL;
@@ -154,7 +154,7 @@ namespace qqliwuwang.Controllers
                     res.Message = "操作失败:文件不是.xls类型！";
                     return jr;
                 }
-                var dt = Common.Helpers.NPOIHelper.ImportExceltoDt(file.InputStream);
+                var dt = HWAdmin.Common.Helpers.NPOIHelper.ImportExceltoDt(file.InputStream);
                 ///换列名称
                 if (dt.Rows.Count > 0)
                 {
@@ -210,7 +210,7 @@ namespace qqliwuwang.Controllers
         {
             var root = Server.MapPath("~");
             var path = Path.Combine(root, "App_Data/Template/淘宝商品导入模板.xls");
-            Common.Helpers.NPOIHelper.ExportByWeb(path, "淘宝商品导入模板.xls");
+            HWAdmin.Common.Helpers.NPOIHelper.ExportByWeb(path, "淘宝商品导入模板.xls");
         }
 
         /// <summary>

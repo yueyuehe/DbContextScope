@@ -11,6 +11,7 @@ using System.Data.Entity;
 namespace Mehdime.Entity
 {
     /// <summary>
+    /// 懒加载模式创建 DBContext
     /// Maintains a list of lazily-created DbContext instances.
     /// </summary>
     public interface IDbContextCollection : IDisposable

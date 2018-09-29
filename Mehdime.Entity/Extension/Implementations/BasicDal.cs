@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mehdime.Entity.Extension
 {
-    public class BasicDAL<TEntity, TDbContext> : IBasicDAL<TEntity> where TEntity : class where TDbContext : DbContext
+    public abstract class BasicDAL<TEntity, TDbContext> : IBasicDAL<TEntity> where TEntity : class where TDbContext : DbContext
     {
         /// <summary>
         /// DbContext 子类可直接使用
@@ -24,7 +24,7 @@ namespace Mehdime.Entity.Extension
                 return dbContext;
             }
         }
-      
+
         #region 查询语句
 
         /// <summary>  
@@ -204,7 +204,7 @@ namespace Mehdime.Entity.Extension
         {
             DbContext.Set<TEntity>().RemoveRange(entities);
         }
-  
+
         /// <summary>
         /// 根据ID删除
         /// </summary>

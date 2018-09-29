@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layui.cshtml";
+}
+@model HWAdmin.Web.Models.GroupModel
+<div class="layui-form">
+    @Html.LayInputFor(p => p.Name)
+    <div class="layui-form-item">
+        <label class="layui-form-label">组织名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="Name" required lay-verify="required" placeholder="请输入组织名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上级组织</label>
+        <div class="layui-input-inline">
+            <input type="text" id="selectTree" placeholder="" autocomplete="off" class="layui-input">
+            <input type="hidden" name="Parent_Id" />
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">组织描述</label>
+        <div class="layui-input-inline">
+        @*    <textarea name="Description" placeholder="请输入内容" class="layui-textarea"></textarea>*@
+       @Html.TextAreaFor(p => p.Description);
+        </div>
+    </div>
+    <input type="hidden" name="Id" />
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button id="btn_submit" class="layui-btn" lay-submit lay-filter="f_submit">提交</button>
+            <button id="btn_cancel" class="layui-btn layui-btn-primary">取消</button>
+        </div>
+    </div>
+</div>
+@section Script{
+
+    <script>
+        //config的设置是全局的
+        layui.config({
+            base: '/layui/layuiExtensions/' //假设这是test.js所在的目录
+        }).extend({ //设定模块别名
+            treeselect: 'treeselect', //如果test.js是在根目录，也可以不用设定别名
+            // test1: 'admin/test1' //相对于上述base目录的子目录
+        });
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+            var $ = layui.jquery;
+            //监听提交
+            form.on('submit(f_submit)', function (data) {
+                $.post("/GroupManage/Save", data.field, function (resp) {
+                    layer.msg(resp.Message);
+                }, "json")
+                return false;
+            });
+        });
+
+        layui.use('treeselect',
+            function () {
+                treeselect = layui.treeselect;
+                treeselect.render(
+                    {
+                        elem: "#selectTree",
+                        data: "/GroupManage/GetTreeData",
+                        method: "GET",
+                        selectcall: function (data) {
+                            console.log(data);
+                        }
+                    });
+            });
+    </script>
+
+
+
+
+}

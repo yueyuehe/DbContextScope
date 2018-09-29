@@ -48,7 +48,7 @@ namespace Mehdime.Entity.Extension
         void RemoveById(object key);
 
         /// <summary>
-        /// 根据Id删除
+        /// 根据Ids删除
         /// </summary>
         /// <param name="keys"></param>
         void RemoveByIds(params object[] keys);
@@ -116,8 +116,6 @@ namespace Mehdime.Entity.Extension
         /// <returns></returns>
         IList<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize);
 
-
-        //6.0  
         /// <summary>  
         /// 创建一个原始 SQL 查询，该查询将返回此集中的实体。 
         /// 默认情况下，上下文会跟踪返回的实体；可通过对返回的 DbSqlQuery<TEntity>
@@ -135,7 +133,6 @@ namespace Mehdime.Entity.Extension
         /// </summary>  
         /// <param name="sql">sql查询语句</param>  
         IList<TEntity> SqlQuery(string sql, params object[] param);
-
 
         /// <summary>  
         /// 对数据库执行给定的 DDL/DML 命令。 
@@ -164,6 +161,7 @@ namespace Mehdime.Entity.Extension
         /// <param name="key"></param>
         /// <returns></returns>
         bool Exists(object key);
+     
         /// <summary>  
         /// 重载。 返回序列中的元素数。 （由 QueryableExtensions 定义。）  
         /// </summary>  

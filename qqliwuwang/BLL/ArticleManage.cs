@@ -11,7 +11,7 @@ namespace qqliwuwang.BLL
 {
     public class ArticleManage : BaseBLL<Qq_Article>
     {
-    
+
         /// <summary>
         /// 分页查询
         /// </summary>
@@ -21,7 +21,7 @@ namespace qqliwuwang.BLL
         /// <param name="orderFild"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        public override Page<Qq_Article> Page(long page, long limit, Qq_Article queryModel, string orderFild, string isAsc)
+        public override Page<Qq_Article> Page(long page, long limit, Qq_Article queryModel, string orderFild, string orderType = "ASC")
         {
             var sql = new StringBuilder("select * from t_qq_Articles where 1=1 ");
             var param = new List<SqlParameter>();
@@ -39,6 +39,11 @@ namespace qqliwuwang.BLL
             {
                 sql.Append(" and HeadContent like @HeadContent ");
                 param.Add(new SqlParameter("@HeadContent", queryModel.HeadContent));
+            }
+            //排序
+            if (!string.IsNullOrEmpty(orderFild))
+            {
+                sql.Append(string.Format(" order by {0} {1} ", orderFild, orderType));
             }
             return GiftDB.GetInstance().Page<Qq_Article>(page, limit, sql.ToString(), param.ToArray());
         }

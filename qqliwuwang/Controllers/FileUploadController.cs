@@ -1,5 +1,5 @@
-﻿using Common.Helpers;
-using Common.Model;
+﻿using HWAdmin.Common.Helpers;
+using HWAdmin.Common.Model;
 using qqliwuwang.Helper;
 using System;
 using System.Collections.Generic;
@@ -38,10 +38,10 @@ namespace qqliwuwang.Controllers
                 var item = Request.Files[0];
 
                 var root = PathHepler.WebRoot();
-                var folder = Common.Helpers.CommonHelper.CreateFolderPath(PathType.Month);
+                var folder = HWAdmin.Common.Helpers.CommonHelper.CreateFolderPath(PathType.Month);
 
                 folder = Path.Combine("Image", folder);
-                var fileName = Common.Helpers.CommonHelper.CreateNewFileName(item.FileName);
+                var fileName = HWAdmin.Common.Helpers.CommonHelper.CreateNewFileName(item.FileName);
                 path = Path.Combine(root, folder, fileName);
                 if (!FileHelper.IsExistDirectory(Path.Combine(root, folder)))
                 {

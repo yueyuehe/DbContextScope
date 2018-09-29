@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HWAdmin.Common.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,16 +12,19 @@ namespace qqliwuwang.Controllers
     public class QQArticleController : ApiController
     {
         // GET: api/QQArticle
-        [HttpGet, Route("Test")]
-        public string Test()
+        public HttpResponseMessage Get()
         {
-            return "value1";
+            JsonResponse jr = new JsonResponse();
+            jr.Data = new { data = "lis", age = 8, name = "lis" };
+            return jr.ToHttpResponse();
         }
 
         // GET: api/QQArticle/5
         public string Get(int id)
         {
-            return "value";
+
+            return "";
+
         }
 
         // POST: api/QQArticle

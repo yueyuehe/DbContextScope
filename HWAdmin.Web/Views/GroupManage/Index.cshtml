@@ -1,0 +1,55 @@
+﻿@model  HWAdmin.Web.Models.GroupModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layui.cshtml";
+}
+
+<div class="layui-fluid">
+    <div class="layui-row ">
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <div class="layui-btn-group">
+                        <button class="layui-btn layui-btn-sm">新增</button>
+                        <button class="layui-btn layui-btn-sm">编辑</button>
+                        <button class="layui-btn layui-btn-sm">删除</button>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <ul id="tree"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md8">
+            <div class="layui-row">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        @Html.LayTableFor()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Script{
+    <script type="text/javascript">
+        layui.use(["table", "tree"], function () {
+            var $ = layui.jquery;
+            var tree = layui.tree;
+            var table = layui.table;
+
+            $.post("/GroupManage/GetGroupTree", {}, function (data) {
+                //树形
+                data.click = function (node) {
+
+                }
+                layui.tree(data);
+            }, "json")
+        });
+
+    </script>
+}

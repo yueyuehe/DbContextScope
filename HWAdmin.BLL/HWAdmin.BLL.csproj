@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{696D75E8-B9B9-44DB-9729-A5A4FC17D52F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HWAdmin.BLL</RootNamespace>
+    <AssemblyName>HWAdmin.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\SysBaseBLL.cs" />
+    <Compile Include="Base\ServiceBaseBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\AccountBLL.cs" />
+    <Compile Include="System\ActionAuthBLL.cs" />
+    <Compile Include="System\AuthorityBLL.cs" />
+    <Compile Include="System\FileAuthBLL.cs" />
+    <Compile Include="System\GroupBLL.cs" />
+    <Compile Include="System\MenuBLL.cs" />
+    <Compile Include="System\PageElementBLL.cs" />
+    <Compile Include="System\RoleBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HWAdmin.Common\HWAdmin.Common.csproj">
+      <Project>{D960EF83-1E1D-47C4-A401-138EBA430386}</Project>
+      <Name>HWAdmin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HWAdmin.DAL\HWAdmin.DAL.csproj">
+      <Project>{24C828E4-B14D-4EE5-AB33-395A20430777}</Project>
+      <Name>HWAdmin.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HWAdmin.Entity\HWAdmin.Entity.csproj">
+      <Project>{57C3CC64-4670-4F2A-99EA-31061E285AAB}</Project>
+      <Name>HWAdmin.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HWAdmin.IBLL\HWAdmin.IBLL.csproj">
+      <Project>{9D3DECE9-99F2-4FB5-AC3E-8BBEFD74EF62}</Project>
+      <Name>HWAdmin.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HWAdmin.IDAL\HWAdmin.IDAL.csproj">
+      <Project>{BFF5A125-E3A3-49FC-A800-FE4F3CC44825}</Project>
+      <Name>HWAdmin.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mehdime.Entity\Mehdime.Entity.csproj">
+      <Project>{4830BAFD-4163-473E-B00F-65F274AC165F}</Project>
+      <Name>Mehdime.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
