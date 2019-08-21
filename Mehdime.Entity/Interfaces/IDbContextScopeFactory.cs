@@ -18,7 +18,8 @@ namespace Mehdime.Entity
     {
         /// <summary>
         /// Creates a new DbContextScope.
-        /// 
+        /// 创建一各新的DBContext作用域 默认会加入到已经存在的DBcontext作用域中
+        /// 可以使用DbContextScopeOption.ForceCreateNew 创建一各新的作用域
         /// By default, the new scope will join the existing ambient scope. This
         /// is what you want in most cases. This ensures that the same DbContext instances
         /// are used by all services methods called within the scope of a business transaction.
@@ -32,7 +33,7 @@ namespace Mehdime.Entity
 
         /// <summary>
         /// Creates a new DbContextScope for read-only queries.
-        /// 
+        /// 创建一各只读书的作用域
         /// By default, the new scope will join the existing ambient scope. This
         /// is what you want in most cases. This ensures that the same DbContext instances
         /// are used by all services methods called within the scope of a business transaction.
@@ -45,6 +46,8 @@ namespace Mehdime.Entity
         IDbContextReadOnlyScope CreateReadOnly(DbContextScopeOption joiningOption = DbContextScopeOption.JoinExisting);
 
         /// <summary>
+        /// 创建一个新的带事务的作用域 避免做复杂的操作
+        /// 
         /// Forces the creation of a new ambient DbContextScope (i.e. does not
         /// join the ambient scope if there is one) and wraps all DbContext instances
         /// created within that scope in an explicit database transaction with 

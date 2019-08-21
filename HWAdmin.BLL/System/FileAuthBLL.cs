@@ -2,6 +2,7 @@
 using HWAdmin.DAL.System;
 using HWAdmin.Entity.System;
 using HWAdmin.IBLL.System;
+using HWAdmin.IDAL.System;
 using Mehdime.Entity.Extension;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace HWAdmin.BLL.System
     /// </summary>
     public class FileAuthBLL : SysBaseBLL<FileAuth>, IFileAuthBLL
     {
-        public FileAuthBLL()
+        public FileAuthBLL(IFileAuthDAL dal) : base(dal)
         {
-            basicDal = new FileAuthDAL();
+
         }
     }
 }

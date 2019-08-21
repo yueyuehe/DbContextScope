@@ -7,6 +7,7 @@ using Mehdime.Entity.Extension;
 using HWAdmin.BLL.Base;
 using HWAdmin.Entity.System;
 using HWAdmin.IBLL.System;
+using HWAdmin.IDAL.System;
 
 namespace HWAdmin.BLL.System
 {
@@ -15,6 +16,8 @@ namespace HWAdmin.BLL.System
     /// </summary>
     public class PageElementBLL : SysBaseBLL<PageElement>, IPageElementBLL
     {
-
+        public PageElementBLL(IPageElementDAL dal) : base(dal)
+        {
+        }
     }
 }

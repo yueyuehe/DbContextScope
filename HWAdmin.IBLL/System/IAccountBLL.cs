@@ -15,12 +15,18 @@ namespace HWAdmin.IBLL.System
     {
 
         /// <summary>
-        /// 登录 获取账号
+        /// 根据用户名和密码查找
         /// </summary>
         /// <param name="username"></param>
         /// <param name="parssword"></param>
         /// <returns></returns>
-        Account Login(string username, string parssword);
+        Account Find(string username, string parssword);
+
+        /// <summary>
+        /// 账号确认
+        /// </summary>
+        /// <param name="code"></param>
+        void AccountConfirmByEmail(string code);
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mehdime.Entity.Enums;
+using Mehdime.Entity.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,10 +9,14 @@ using System.Threading.Tasks;
 
 namespace Mehdime.Entity.Extension
 {
+
+    /// <summary>
+    /// 基础业务类
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public interface IBasicBLL<TEntity> where TEntity : class
     {
         #region 数据操作
-
         /// <summary>  
         /// 将给定实体以“已添加”状态添加到集的基础上下文中，这样一来，
         /// 当调用 SaveChanges 时，会将该实体插入到数据库中。  
@@ -27,6 +33,11 @@ namespace Mehdime.Entity.Extension
         /// <returns></returns>  
         void AddRange(IEnumerable<TEntity> entities);
 
+        /// <summary>
+        /// 大批量数据增加
+        /// </summary>
+        /// <param name="entities"></param>
+        void BulkInsert(IEnumerable<TEntity> entities);
         /// <summary>  
         /// 将给定实体标记为“已删除”，这样一来，当调用 SaveChanges 时，将从数据库中删除该实体。 请注意，在调用此方法之前，该实体必须以另一种状态存在于该上下文中。  
         /// </summary>  
@@ -41,6 +52,12 @@ namespace Mehdime.Entity.Extension
         /// <returns></returns>  
         void RemoveRange(IEnumerable<TEntity> entities);
 
+
+        /// <summary>
+        /// 大批量数据删除
+        /// </summary>
+        /// <param name="entities"></param>
+        void BulkDelete(IEnumerable<TEntity> entities);
         /// <summary>
         /// 根据ID删除
         /// </summary>
@@ -64,8 +81,14 @@ namespace Mehdime.Entity.Extension
         /// </summary>
         /// <param name="entity"></param>
         void UpdateRange(IEnumerable<TEntity> entity);
-        #endregion
 
+        /// <summary>
+        ///大批量数据修改
+        /// </summary>
+        /// <param name="entity"></param>
+        void BulkUpdate(IEnumerable<TEntity> entities);
+
+        #endregion
 
         #region 数据查询
         /// <summary>  
@@ -78,7 +101,7 @@ namespace Mehdime.Entity.Extension
         /// </summary>  
         /// <param name="key"></param>  
         /// <returns></returns>  
-        TEntity Find(object key);
+        TEntity FindByID(object key);
 
         /// <summary>  
         /// 重载。 异步返回序列的第一个元素。  
@@ -92,7 +115,7 @@ namespace Mehdime.Entity.Extension
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
-        IList<TEntity> Find(Expression<Func<TEntity, bool>> where);
+        IList<TEntity> FindList(Expression<Func<TEntity, bool>> where);
 
         /// <summary>
         /// 查询集合
@@ -102,7 +125,7 @@ namespace Mehdime.Entity.Extension
         /// <param name="orderLambda">排序</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns></returns>
-        IList<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc);
+        IList<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, OrderTypeOption orderType);
 
         /// <summary>
         /// 分页查询
@@ -114,8 +137,63 @@ namespace Mehdime.Entity.Extension
         /// <param name="page">第几页</param>
         /// <param name="pageSize">每页显示数量</param>
         /// <returns></returns>
-        IList<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize);
+        IList<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, OrderTypeOption orderType, int page, int pageSize);
 
+        PageModel<TEntity> FindPage(Expression<Func<TEntity, bool>> whereLambda, PageModel<TEntity> pageMode);
+
+
+        /// <summary>  
+        /// 重载。 确定序列的任何元素是否满足条件。 
+        /// （由 QueryableExtensions 定义。）  
+        /// </summary>  
+        /// <param name="anyLambda"></param>  
+        /// <returns></returns>  
+        bool Exists(Expression<Func<TEntity, bool>> anyLambda);
+
+        /// <summary>
+        /// 判断是否存在
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool Exists(object key);
+
+        /// <summary>  
+        /// 重载。 返回序列中的元素数。 （由 QueryableExtensions 定义。）  
+        /// </summary>  
+        /// <returns></returns>  
+        int Count();
+
+        /// <summary>  
+        /// 重载。 返回满足条件的序列中的元素数。  
+        /// </summary>  
+        /// <param name="predicate">查询表达式</param>  
+        /// <returns></returns>  
+        int Count(Expression<Func<TEntity, bool>> predicate);
+
+
+        #endregion
+
+
+        #region 数据库查询优化技术
+        //AsNonUnicode 技术 Include技术 any技术 判断是否存在
+        //分页查询最后ToList
+        //EF预热
+
+
+        /// <summary>
+        /// 无跟踪查询技术(查询出来的数据不可以修改）
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        IList<TEntity> FindListAsNoTracking(Expression<Func<TEntity, bool>> expression);
+
+
+        #endregion
+
+
+        #region BLL层不应该写SQL语句意味着 BLL层不能有该方法
+
+        /*
         /// <summary>  
         /// 创建一个原始 SQL 查询，该查询将返回此集中的实体。 
         /// 默认情况下，上下文会跟踪返回的实体；可通过对返回的 DbSqlQuery<TEntity>
@@ -146,35 +224,11 @@ namespace Mehdime.Entity.Extension
         /// <param name="sql">查询语句</param>  
         /// <returns></returns>  
         bool ExecuteSqlCommand(string sql, params object[] param);
-
-        /// <summary>  
-        /// 重载。 确定序列的任何元素是否满足条件。 
-        /// （由 QueryableExtensions 定义。）  
-        /// </summary>  
-        /// <param name="anyLambda"></param>  
-        /// <returns></returns>  
-        bool Exists(Expression<Func<TEntity, bool>> anyLambda);
-
-        /// <summary>
-        /// 判断是否存在
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        bool Exists(object key);
-     
-        /// <summary>  
-        /// 重载。 返回序列中的元素数。 （由 QueryableExtensions 定义。）  
-        /// </summary>  
-        /// <returns></returns>  
-        int Count();
-
-        /// <summary>  
-        /// 重载。 返回满足条件的序列中的元素数。  
-        /// </summary>  
-        /// <param name="predicate">查询表达式</param>  
-        /// <returns></returns>  
-        int Count(Expression<Func<TEntity, bool>> predicate);
+        */
 
         #endregion
+
+
+
     }
 }

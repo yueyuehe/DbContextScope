@@ -1,4 +1,5 @@
 ﻿using HWAdmin.BLL.System;
+using HWAdmin.IBLL.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace HWAdmin.Web.Controllers
 {
     public class MenuController : Controller
     {
-        private MenuBLL service = new MenuBLL();
+        private IMenuBLL service;
         // GET: Menu
         public ActionResult Index()
         {
@@ -28,7 +29,6 @@ namespace HWAdmin.Web.Controllers
         {
             try
             {
-
                 return RedirectToAction("Index");
             }
             catch

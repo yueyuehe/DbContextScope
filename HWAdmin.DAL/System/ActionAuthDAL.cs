@@ -13,7 +13,8 @@ namespace HWAdmin.DAL.System
     /// <summary>
     /// 操作权限的集合
     /// </summary>
-    public class ActionAuthDAL: BasicDAL<ActionAuth, SysContext>, IActionAuthDAL
+    public class ActionAuthDAL : BasicDAL<ActionAuth, SysContext>, IActionAuthDAL
     {
+
     }
 }

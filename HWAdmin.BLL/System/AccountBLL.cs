@@ -9,6 +9,7 @@ using HWAdmin.BLL.Base;
 using HWAdmin.IBLL.System;
 using HWAdmin.DAL.System;
 using HWAdmin.Entity.Enum;
+using HWAdmin.IDAL.System;
 
 namespace HWAdmin.BLL.System
 {
@@ -17,9 +18,18 @@ namespace HWAdmin.BLL.System
     /// </summary>
     public class AccountBLL : SysBaseBLL<Account>, IAccountBLL
     {
-        public AccountBLL()
+        public AccountBLL(IAccountDAL dal) : base(dal)
         {
-            basicDal = new AccountDAL();
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        public void AccountConfirmByEmail(string code)
+        {
+            return;
         }
 
         /// <summary>
@@ -28,9 +38,9 @@ namespace HWAdmin.BLL.System
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public Account Login(string username, string password)
+        public Account Find(string username, string password)
         {
-            return basicDal.FindOne(p => p.AccountName == username && p.Password == password && p.DeleteFlg == DeleteFlg.N);
+            return BasicDal.FindOne(p => p.AccountName == username && p.Password == password && p.DeleteFlg == DeleteFlg.N);
         }
     }
 }

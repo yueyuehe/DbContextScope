@@ -8,6 +8,7 @@ using HWAdmin.BLL.Base;
 using HWAdmin.Entity.System;
 using HWAdmin.IBLL.System;
 using HWAdmin.DAL.System;
+using HWAdmin.IDAL.System;
 
 namespace HWAdmin.BLL.System
 {
@@ -16,9 +17,9 @@ namespace HWAdmin.BLL.System
     /// </summary>
     public class AuthorityBLL : SysBaseBLL<Authority>, IAuthorityBLL
     {
-        public AuthorityBLL()
+        public AuthorityBLL(IAuthorityDAL dal) : base(dal)
         {
-            basicDal = new AuthorityDAL();
+
         }
 
     }

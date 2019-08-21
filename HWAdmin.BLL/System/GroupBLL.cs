@@ -8,6 +8,7 @@ using HWAdmin.BLL.Base;
 using HWAdmin.Entity.System;
 using HWAdmin.IBLL.System;
 using HWAdmin.DAL.System;
+using HWAdmin.IDAL.System;
 
 namespace HWAdmin.BLL.System
 {
@@ -16,9 +17,8 @@ namespace HWAdmin.BLL.System
     /// </summary>
     public class GroupBLL : SysBaseBLL<Group>, IGroupBLL
     {
-        public GroupBLL()
+        public GroupBLL(IGroupDAL dal):base(dal)
         {
-            basicDal = new GroupDAL();
         }
-    }
+}
 }

@@ -9,12 +9,14 @@ using HWAdmin.BLL.System;
 using HWAdmin.Entity.System;
 using HWAdmin.Common.Config.AppStr;
 using HWAdmin.Common.Extensions;
+using HWAdmin.IBLL.System;
+using Mehdime.Entity.Enums;
 
 namespace HWAdmin.Web.Controllers
 {
     public class GroupManageController : Controller
     {
-        private GroupBLL bll = new GroupBLL();
+        private IGroupBLL bll;
 
         /// <summary>
         /// 跳转到主页
@@ -38,7 +40,7 @@ namespace HWAdmin.Web.Controllers
         {
             //条件查询
             pageModel.count = bll.Count();
-            var query = bll.FindPageList(p => true, p => p.CreateDate, false, pageModel.page, pageModel.limit);
+            var query = bll.FindPageList(p => true, p => p.CreateDate, OrderTypeOption.DESC, pageModel.page, pageModel.limit);
             pageModel.data = query.ToList().MapToList<Group, GroupModel>();
             var json = new JsonResult
             {
@@ -170,7 +172,7 @@ namespace HWAdmin.Web.Controllers
 
         public JsonResult GetTreeData()
         {
-            var groups = bll.Find(p => p.FlgDel == FlgDel.N);
+            var groups = bll.FindList(p => p.DeleteFlg == Entity.Enum.DeleteFlg.N);
 
             List<Node> list = new List<Node>();
             for (var i = 0; i < 10; i++)

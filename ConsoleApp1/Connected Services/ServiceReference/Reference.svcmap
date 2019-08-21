@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7e197f88-5515-4c43-8995-96a16eb5706f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8938/ProductMoveService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ProductMoveService.xsd" MetadataType="Schema" ID="16039828-3d9a-41fd-b00c-2b70014e0b80" SourceId="1" SourceUrl="http://localhost:8938/ProductMoveService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProductMoveService1.xsd" MetadataType="Schema" ID="1976ce85-70ad-47e8-9b27-fa88a0432e63" SourceId="1" SourceUrl="http://localhost:8938/ProductMoveService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProductMoveService2.xsd" MetadataType="Schema" ID="ff194930-3b45-428d-8a69-228b36991ddc" SourceId="1" SourceUrl="http://localhost:8938/ProductMoveService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProductMoveService.disco" MetadataType="Disco" ID="169a1f66-97fc-4210-9f8e-623d3185bf27" SourceId="1" SourceUrl="http://localhost:8938/ProductMoveService.svc?disco" />
+    <MetadataFile FileName="ProductMoveService.wsdl" MetadataType="Wsdl" ID="c7de379e-074c-4f20-98d2-722894f5d3e1" SourceId="1" SourceUrl="http://localhost:8938/ProductMoveService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

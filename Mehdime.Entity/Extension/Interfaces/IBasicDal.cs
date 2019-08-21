@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mehdime.Entity.Enums;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Mehdime.Entity.Extension
     /// <summary>
     /// 数据库操作的基本方法
     /// </summary>
-    public interface IBasicDAL<TEntity> where TEntity: class
+    public interface IBasicDAL<TEntity> where TEntity : class
     {
         /// <summary>  
         /// 将给定实体以“已添加”状态添加到集的基础上下文中，这样一来，
@@ -29,6 +30,11 @@ namespace Mehdime.Entity.Extension
         /// <returns></returns>  
         void AddRange(IEnumerable<TEntity> entities);
 
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="entities"></param>
+        void BulkInsert(IEnumerable<TEntity> entities);
 
         /// <summary>  
         /// 将给定实体标记为“已删除”，这样一来，当调用 SaveChanges 时，将从数据库中删除该实体。 请注意，在调用此方法之前，该实体必须以另一种状态存在于该上下文中。  
@@ -43,8 +49,12 @@ namespace Mehdime.Entity.Extension
         /// <param name="entities">合集</param>  
         /// <returns></returns>  
         void RemoveRange(IEnumerable<TEntity> entities);
-        
-        
+
+        /// <summary>
+        /// 批量删除
+        /// </summary>
+        /// <param name="entities"></param>
+        void BulkDelete(IEnumerable<TEntity> entities);
         /// <summary>
         /// 根据ID删除
         /// </summary>
@@ -67,7 +77,13 @@ namespace Mehdime.Entity.Extension
         /// 批量修改
         /// </summary>
         /// <param name="entity"></param>
-        void UpdateRange(IEnumerable<TEntity> entity);
+        void UpdateRange(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 批量更新
+        /// </summary>
+        /// <param name="entity"></param>
+        void BulkUpdate(IEnumerable<TEntity> entities);
 
         /// <summary>  
         /// 查找带给定主键值的实体。 
@@ -79,10 +95,10 @@ namespace Mehdime.Entity.Extension
         /// </summary>  
         /// <param name="key"></param>  
         /// <returns></returns>  
-        TEntity Find(object key);
+        TEntity FindByID(object key);
 
         /// <summary>  
-        /// 重载。 异步返回序列的第一个元素。  
+        /// 重载。 返回序列的第一个元素。  
         /// </summary>  
         /// <param name="whereLambda">查询表达式</param>  
         /// <returns></returns>  
@@ -96,14 +112,14 @@ namespace Mehdime.Entity.Extension
         IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> where);
 
         /// <summary>
-        /// 查询集合
+        /// 查询集合 
         /// </summary>
         /// <typeparam name="S">排序字段</typeparam>
         /// <param name="whereLambda">where条件</param>
         /// <param name="orderLambda">排序</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns></returns>
-        IQueryable<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc);
+        //IQueryable<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, OrderTypeOption orderType);
 
         /// <summary>
         /// 分页查询
@@ -115,10 +131,33 @@ namespace Mehdime.Entity.Extension
         /// <param name="page">第几页</param>
         /// <param name="pageSize">每页显示数量</param>
         /// <returns></returns>
-        IQueryable<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize);
+        ///IQueryable<TEntity> FindListForPage<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, OrderTypeOption orderType, int page, int pageSize);
 
 
-        //6.0  
+        /// <summary>  
+        /// 重载。 确定序列的任何元素是否满足条件。 
+        /// （由 QueryableExtensions 定义。）  
+        /// </summary>  
+        /// <param name="anyLambda"></param>  
+        /// <returns></returns>  
+        bool Exists(Expression<Func<TEntity, bool>> anyLambda);
+
+        /// <summary>  
+        /// 重载。 返回序列中的元素数。 （由 QueryableExtensions 定义。）  
+        /// </summary>  
+        /// <returns></returns>  
+        int Count();
+
+        /// <summary>  
+        /// 重载。 返回满足条件的序列中的元素数。  
+        /// </summary>  
+        /// <param name="predicate">查询表达式</param>  
+        /// <returns></returns>  
+        int Count(Expression<Func<TEntity, bool>> predicate);
+
+
+
+        //6.0  需要再处理 直接执行SQL语句
         /// <summary>  
         /// 创建一个原始 SQL 查询，该查询将返回此集中的实体。 
         /// 默认情况下，上下文会跟踪返回的实体；可通过对返回的 DbSqlQuery<TEntity>
@@ -135,7 +174,7 @@ namespace Mehdime.Entity.Extension
         /// context.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
         /// </summary>  
         /// <param name="sql">sql查询语句</param>  
-        IEnumerable<TEntity> SqlQuery(string sql, params object[] param);
+        // IEnumerable<TEntity> SqlQuery(string sql, params object[] param);
 
 
         /// <summary>  
@@ -149,29 +188,9 @@ namespace Mehdime.Entity.Extension
         /// </summary>  
         /// <param name="sql">查询语句</param>  
         /// <returns></returns>  
-        bool ExecuteSqlCommand(string sql,params object[] param);
-
-        /// <summary>  
-        /// 重载。 确定序列的任何元素是否满足条件。 
-        /// （由 QueryableExtensions 定义。）  
-        /// </summary>  
-        /// <param name="anyLambda"></param>  
-        /// <returns></returns>  
-        bool Exists(Expression<Func<TEntity, bool>> anyLambda);
+        //bool ExecuteSqlCommand(string sql, params object[] param);
 
 
-        /// <summary>  
-        /// 重载。 返回序列中的元素数。 （由 QueryableExtensions 定义。）  
-        /// </summary>  
-        /// <returns></returns>  
-        int Count();
-
-        /// <summary>  
-        /// 重载。 返回满足条件的序列中的元素数。  
-        /// </summary>  
-        /// <param name="predicate">查询表达式</param>  
-        /// <returns></returns>  
-        int Count(Expression<Func<TEntity, bool>> predicate);
 
     }
 }

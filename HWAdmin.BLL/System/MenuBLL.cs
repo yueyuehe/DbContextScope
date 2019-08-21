@@ -8,6 +8,7 @@ using HWAdmin.Entity.System;
 using HWAdmin.BLL.Base;
 using HWAdmin.IBLL.System;
 using HWAdmin.DAL.System;
+using HWAdmin.IDAL.System;
 
 namespace HWAdmin.BLL.System
 {
@@ -16,9 +17,8 @@ namespace HWAdmin.BLL.System
     /// </summary>
     public class MenuBLL : SysBaseBLL<Menu>, IMenuBLL
     {
-        public MenuBLL()
+        public MenuBLL(IMenuDAL dal):base(dal)
         {
-            basicDal = new MenuDAL();
         }
     }
 }

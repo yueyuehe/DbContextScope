@@ -17,7 +17,7 @@
     <AssemblyName>HWAdmin.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -190,6 +190,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\System\AccountManage.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GroupManageController.cs" />
@@ -677,6 +678,10 @@
     <ProjectReference Include="..\HWAdmin.Entity\HWAdmin.Entity.csproj">
       <Project>{57C3CC64-4670-4F2A-99EA-31061E285AAB}</Project>
       <Name>HWAdmin.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HWAdmin.IBLL\HWAdmin.IBLL.csproj">
+      <Project>{9D3DECE9-99F2-4FB5-AC3E-8BBEFD74EF62}</Project>
+      <Name>HWAdmin.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\LayuiFW\LayuiFW.csproj">
       <Project>{4DC7A365-9BBA-4EFE-8D0F-FAC2D1BAB7AB}</Project>

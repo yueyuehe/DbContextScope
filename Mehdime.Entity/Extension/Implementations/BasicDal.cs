@@ -47,22 +47,6 @@ namespace Mehdime.Entity.Extension
         }
 
         /// <summary>  
-        /// 对数据库执行给定的 DDL/DML 命令。 
-        /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 
-        /// 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
-        /// 您提供的任何参数值都将自动转换为 DbParameter。
-        /// DbContext.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @p0", userSuppliedAuthor); 
-        /// 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。
-        /// DbContext.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
-        /// </summary>  
-        /// <param name="sql">查询语句</param>  
-        /// <returns></returns>  
-        public virtual bool ExecuteSqlCommand(string sql, params object[] param)
-        {
-            return DbContext.Database.ExecuteSqlCommand(sql, param) > 0;
-        }
-
-        /// <summary>  
         /// 重载。 确定序列的任何元素是否满足条件。 
         /// （由 QueryableExtensions 定义。）  
         /// </summary>  
@@ -72,6 +56,7 @@ namespace Mehdime.Entity.Extension
         {
             return DbContext.Set<TEntity>().Any(anyLambda);
         }
+
 
         /// <summary>
         /// 按条件查询
@@ -93,26 +78,9 @@ namespace Mehdime.Entity.Extension
         /// </summary>  
         /// <param name="key"></param>  
         /// <returns></returns>  
-        public virtual TEntity Find(object key)
+        public virtual TEntity FindByID(object key)
         {
             return DbContext.Set<TEntity>().Find(key);
-        }
-
-
-        /// <summary>
-        /// 查询集合
-        /// </summary>
-        /// <typeparam name="S">排序字段</typeparam>
-        /// <param name="whereLambda">where条件</param>
-        /// <param name="orderLambda">排序</param>
-        /// <param name="isAsc">是否升序</param>
-        /// <returns></returns>
-        public virtual IQueryable<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc)
-        {
-            var _list = DbContext.Set<TEntity>().Where<TEntity>(whereLambda);
-            if (isAsc) _list = _list.OrderBy<TEntity, S>(orderLambda);
-            else _list = _list.OrderByDescending<TEntity, S>(orderLambda);
-            return _list;
         }
 
         /// <summary>  
@@ -125,45 +93,6 @@ namespace Mehdime.Entity.Extension
             return DbContext.Set<TEntity>().FirstOrDefault<TEntity>(whereLambda);
         }
 
-        /// <summary>
-        /// 分页查询
-        /// </summary>
-        /// <typeparam name="S">排序字段</typeparam>
-        /// <param name="whereLambda">where条件</param>
-        /// <param name="orderLambda">排序条件</param>
-        /// <param name="isAsc">是否升序</param>
-        /// <param name="page">第几页</param>
-        /// <param name="pageSize">每页显示数量</param>
-        /// <returns></returns>
-        public virtual IQueryable<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize)
-        {
-            var _list = DbContext.Set<TEntity>().Where<TEntity>(whereLambda);
-            if (isAsc) _list = _list.OrderBy<TEntity, S>(orderLambda);
-            else _list = _list.OrderByDescending<TEntity, S>(orderLambda);
-            _list = _list.Skip(pageSize * (page - 1)).Take(pageSize);
-            return _list;
-        }
-
-        /// <summary>  
-        /// 创建一个原始 SQL 查询，该查询将返回此集中的实体。 
-        /// 默认情况下，上下文会跟踪返回的实体；可通过对返回的 DbSqlQuery<TEntity>
-        /// 调用 AsNoTracking 来更改此设置。 
-        /// 请注意返回实体的类型始终是此集的类型，而不会是派生的类型。 
-        /// 如果查询的一个或多个表可能包含其他实体类型的数据，
-        /// 则必须编写适当的 SQL 查询以确保只返回适当类型的实体。
-        /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。
-        /// 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
-        /// 您提供的任何参数值都将自动转换为 DbParameter。 
-        /// DbContext.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @p0", userSuppliedAuthor); 
-        /// 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 
-        /// 这允许您在 SQL 查询字符串中使用命名参数。
-        /// DbContext.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
-        /// </summary>  
-        /// <param name="sql">sql查询语句</param>  
-        public virtual IEnumerable<TEntity> SqlQuery(string sql, params object[] param)
-        {
-            return DbContext.Database.SqlQuery<TEntity>(sql, param);
-        }
 
         #endregion
 
@@ -211,11 +140,11 @@ namespace Mehdime.Entity.Extension
         /// <param name="key"></param>
         public virtual void RemoveById(object key)
         {
-            DbContext.Set<TEntity>().Remove(Find(key));
+            DbContext.Set<TEntity>().Remove(FindByID(key));
         }
 
         /// <summary>
-        /// 批量删除
+        /// 根据ID批量删除
         /// </summary>
         /// <param name="entities"></param>
         public virtual void RemoveByIds(params object[] keys)
@@ -249,6 +178,118 @@ namespace Mehdime.Entity.Extension
                 DbContext.Entry(item).State = EntityState.Modified;
             }
         }
+
+        /// <summary>
+        /// 大批量数据插入
+        /// </summary>
+        /// <param name="entities"></param>
+        public virtual void BulkInsert(IEnumerable<TEntity> entities)
+        {
+            DbContext.BulkInsert(entities);
+        }
+
+
+        /// <summary>
+        /// 大批量数据删除
+        /// </summary>
+        /// <param name="entities"></param>
+        public virtual void BulkDelete(IEnumerable<TEntity> entities)
+        {
+            DbContext.BulkDelete(entities);
+        }
+
+        /// <summary>
+        /// 大批量数据更新
+        /// </summary>
+        /// <param name="entities"></param>
+        public virtual void BulkUpdate(IEnumerable<TEntity> entities)
+        {
+            DbContext.BulkUpdate(entities);
+        }
         #endregion
+
+        #region 只提供基础的查询 分页等不提供
+
+        /*
+         /// <summary>
+         /// 查询集合
+         /// </summary>
+         /// <typeparam name="S">排序字段</typeparam>
+         /// <param name="whereLambda">where条件</param>
+         /// <param name="orderLambda">排序</param>
+         /// <param name="isAsc">是否升序</param>
+         /// <returns></returns>
+         private IQueryable<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc)
+         {
+             var _list = DbContext.Set<TEntity>().Where<TEntity>(whereLambda);
+             if (isAsc) _list = _list.OrderBy<TEntity, S>(orderLambda);
+             else _list = _list.OrderByDescending<TEntity, S>(orderLambda);
+             return _list;
+         }
+
+         /// <summary>
+         /// 分页查询
+         /// </summary>
+         /// <typeparam name="S">排序字段</typeparam>
+         /// <param name="whereLambda">where条件</param>
+         /// <param name="orderLambda">排序条件</param>
+         /// <param name="isAsc">是否升序</param>
+         /// <param name="page">第几页</param>
+         /// <param name="pageSize">每页显示数量</param>
+         /// <returns></returns>
+         private IQueryable<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize)
+         {
+             var _list = DbContext.Set<TEntity>().Where<TEntity>(whereLambda);
+             if (isAsc) _list = _list.OrderBy<TEntity, S>(orderLambda);
+             else _list = _list.OrderByDescending<TEntity, S>(orderLambda);
+             _list = _list.Skip(pageSize * (page - 1)).Take(pageSize);
+             return _list;
+         }
+         */
+
+        #endregion
+
+        #region SQL语句执行 只有子类可以执行
+
+
+        /// <summary>  
+        /// 对数据库执行给定的 DDL/DML 命令。 
+        /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。 
+        /// 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
+        /// 您提供的任何参数值都将自动转换为 DbParameter。
+        /// DbContext.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @p0", userSuppliedAuthor); 
+        /// 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 这允许您在 SQL 查询字符串中使用命名参数。
+        /// DbContext.Database.ExecuteSqlCommand("UPDATE dbo.Posts SET Rating = 5 WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
+        /// </summary>  
+        /// <param name="sql">查询语句</param>  
+        /// <returns></returns>  
+        protected virtual bool ExecuteSqlCommand(string sql, params object[] param)
+        {
+            return DbContext.Database.ExecuteSqlCommand(sql, param) > 0;
+        }
+
+        /// <summary>  
+        /// 创建一个原始 SQL 查询，该查询将返回此集中的实体。 
+        /// 默认情况下，上下文会跟踪返回的实体；可通过对返回的 DbSqlQuery<TEntity>
+        /// 调用 AsNoTracking 来更改此设置。 
+        /// 请注意返回实体的类型始终是此集的类型，而不会是派生的类型。 
+        /// 如果查询的一个或多个表可能包含其他实体类型的数据，
+        /// 则必须编写适当的 SQL 查询以确保只返回适当类型的实体。
+        /// 与接受 SQL 的任何 API 一样，对任何用户输入进行参数化以便避免 SQL 注入攻击是十分重要的。
+        /// 您可以在 SQL 查询字符串中包含参数占位符，然后将参数值作为附加参数提供。 
+        /// 您提供的任何参数值都将自动转换为 DbParameter。 
+        /// DbContext.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @p0", userSuppliedAuthor); 
+        /// 或者，您还可以构造一个 DbParameter 并将它提供给 SqlQuery。 
+        /// 这允许您在 SQL 查询字符串中使用命名参数。
+        /// DbContext.Blogs.SqlQuery("SELECT * FROM dbo.Posts WHERE Author = @author", new SqlParameter("@author", userSuppliedAuthor));  
+        /// </summary>  
+        /// <param name="sql">sql查询语句</param>  
+        protected virtual IEnumerable<TEntity> SqlQuery(string sql, params object[] param)
+        {
+            return DbContext.Database.SqlQuery<TEntity>(sql, param);
+        }
+
+        #endregion
+
     }
 }

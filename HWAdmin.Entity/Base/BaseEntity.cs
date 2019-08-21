@@ -10,6 +10,10 @@ namespace HWAdmin.Entity.Base
     public class BaseEntity
     {
 
+        public BaseEntity()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
         /// <summary>
         /// ID
         /// </summary>

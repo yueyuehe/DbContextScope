@@ -5,11 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System.Data.Entity;
+using Mehdime.Entity.Enums;
+using Mehdime.Entity.Model;
 
 namespace Mehdime.Entity.Extension
 {
-    public abstract class BasicBLL<TEntity, TDbContext> : IBasicBLL<TEntity> where TEntity : class where TDbContext : DbContext
+
+    /// <summary>
+    /// 基础业务类的实现 包括增删改查 基础查询
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TDbContext"></typeparam>
+    public abstract class BasicBLL<TEntity> : IBasicBLL<TEntity> where TEntity : class
     {
+        /// <summary>
+        /// 默认的dbContextScopeFactory
+        /// </summary>
         private IDbContextScopeFactory _dbContextScopeFactory = new DbContextScopeFactory();
 
         /// <summary>
@@ -23,17 +34,43 @@ namespace Mehdime.Entity.Extension
             }
         }
 
+        #region 构造函数
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public BasicBLL(IBasicDAL<TEntity> basicDAL)
+        {
+            BasicDal = basicDAL;
+        }
+
+
+        public BasicBLL(IDbContextScopeFactory factory)
+        {
+            this._dbContextScopeFactory = factory;
+        }
+
+
+        public BasicBLL(IBasicDAL<TEntity> basicDAL, IDbContextScopeFactory factory)
+        {
+            BasicDal = basicDAL;
+            this._dbContextScopeFactory = factory;
+        }
+
+        #endregion
+
         /// <summary>
         /// 由子类传递
         /// </summary>
-        protected IBasicDAL<TEntity> basicDal;// = new BasicDAL<TEntity, TDbContext>();
+        protected IBasicDAL<TEntity> BasicDal { get; }
+
 
         #region 数据操作
         public virtual void Update(TEntity entity)
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.Update(entity);
+                BasicDal.Update(entity);
             }
         }
 
@@ -41,7 +78,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.UpdateRange(entities);
+                BasicDal.UpdateRange(entities);
             }
         }
 
@@ -55,7 +92,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.Add(entity);
+                BasicDal.Add(entity);
                 dbContextScope.SaveChanges();
             }
         }
@@ -70,7 +107,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.AddRange(entities);
+                BasicDal.AddRange(entities);
                 dbContextScope.SaveChanges();
             }
         }
@@ -83,7 +120,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.Remove(entity);
+                BasicDal.Remove(entity);
             }
         }
 
@@ -95,7 +132,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.RemoveRange(entities);
+                BasicDal.RemoveRange(entities);
             }
         }
 
@@ -107,7 +144,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.RemoveById(key);
+                BasicDal.RemoveById(key);
             }
         }
 
@@ -119,7 +156,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.Create())
             {
-                basicDal.RemoveByIds(keys);
+                BasicDal.RemoveByIds(keys);
             }
         }
 
@@ -135,9 +172,10 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.Count();
+                return BasicDal.Count();
             }
         }
+
         /// <summary>
         /// 查询总数
         /// </summary>
@@ -147,21 +185,7 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.Count(predicate);
-            }
-        }
-
-        /// <summary>
-        /// 执行数据库语句 ExecuteSqlCommand
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public virtual bool ExecuteSqlCommand(string sql, params object[] param)
-        {
-            using (var dbContextScope = _dbContextScopeFactory.Create())
-            {
-                return basicDal.ExecuteSqlCommand(sql, param);
+                return BasicDal.Count(predicate);
             }
         }
 
@@ -174,9 +198,10 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.Exists(anyLambda);
+                return BasicDal.Exists(anyLambda);
             }
         }
+
 
         /// <summary>
         /// 判断是否存在
@@ -187,58 +212,231 @@ namespace Mehdime.Entity.Extension
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.Find(key) == null ? false : true;
+                return BasicDal.FindByID(key) == null ? false : true;
             }
         }
 
-        public virtual IList<TEntity> Find(Expression<Func<TEntity, bool>> where)
+        /// <summary>
+        /// 根据ID查找
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public virtual TEntity FindByID(object key)
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.Find(where).ToList();
+                return BasicDal.FindByID(key);
             }
         }
 
-        public virtual TEntity Find(object key)
-        {
-            using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
-            {
-                return basicDal.Find(key);
-            }
-        }
-
-        public virtual IList<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc)
-        {
-            using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
-            {
-                return basicDal.FindList<S>(whereLambda, orderLambda, isAsc).ToList(); ;
-            }
-        }
-
+        /// <summary>
+        /// 查询符合条件的第一个
+        /// </summary>
+        /// <param name="whereLambda"></param>
+        /// <returns></returns>
         public virtual TEntity FindOne(Expression<Func<TEntity, bool>> whereLambda)
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.FindOne(whereLambda);
+                return BasicDal.FindOne(whereLambda);
             }
         }
 
-        public virtual IList<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, bool isAsc, int page, int pageSize)
+        /// <summary>
+        /// 查询符合条件的列表
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public virtual IList<TEntity> FindList(Expression<Func<TEntity, bool>> where)
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.FindPageList<S>(whereLambda, orderLambda, isAsc, page, pageSize).ToList();
+                return BasicDal.Find(where).ToList();
             }
         }
 
-        public virtual IList<TEntity> SqlQuery(string sql, params object[] param)
+
+        public virtual IList<TEntity> FindList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, OrderTypeOption orderType)
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
-                return basicDal.SqlQuery(sql, param).ToList();
+                var temp = BasicDal.Find(whereLambda);
+
+                switch (orderType)
+                {
+                    case OrderTypeOption.NONE:
+                        break;
+                    case OrderTypeOption.ASC:
+                        temp.OrderBy(orderLambda);
+                        break;
+                    case OrderTypeOption.DESC:
+                        temp.OrderByDescending(orderLambda);
+                        break;
+                    default:
+                        break;
+                }
+                return temp.AsNoTracking().ToList();
+            }
+        }
+
+        /// <summary>
+        /// 查询分页数据
+        /// </summary>
+        /// <typeparam name="S"></typeparam>
+        /// <param name="whereLambda"></param>
+        /// <param name="orderLambda"></param>
+        /// <param name="orderType"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public virtual IList<TEntity> FindPageList<S>(Expression<Func<TEntity, bool>> whereLambda, Expression<Func<TEntity, S>> orderLambda, OrderTypeOption orderType, int pageIndex, int pageSize)
+        {
+            using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
+            {
+                var temp = BasicDal.Find(whereLambda);
+                switch (orderType)
+                {
+                    case OrderTypeOption.NONE:
+                        break;
+                    case OrderTypeOption.ASC:
+                        temp.OrderBy(orderLambda);
+                        break;
+                    case OrderTypeOption.DESC:
+                        temp.OrderByDescending(orderLambda);
+                        break;
+                    default:
+                        break;
+                }
+                temp = temp.Skip(pageSize * (pageIndex - 1)).Take(pageSize);
+                return temp.ToList();
+            }
+        }
+
+        /// <summary>
+        /// 返回分页模型
+        /// </summary>
+        /// <param name="whereLambda"></param>
+        /// <param name="pageMode"></param>
+        /// <returns></returns>
+        public virtual PageModel<TEntity> FindPage(Expression<Func<TEntity, bool>> whereLambda, PageModel<TEntity> pageMode)
+        {
+            using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
+            {
+                var temp = BasicDal.Find(whereLambda);
+                switch (pageMode.OrderType)
+                {
+                    case OrderTypeOption.NONE:
+                        break;
+                    case OrderTypeOption.ASC:
+                        temp.OrderBy(pageMode.OrderLambda);
+                        break;
+                    case OrderTypeOption.DESC:
+                        temp.OrderByDescending(pageMode.OrderLambda);
+                        break;
+                    default:
+                        break;
+                }
+                temp = temp.Skip(pageMode.PageSize * (pageMode.PageIndex - 1)).Take(pageMode.PageSize).AsNoTracking();
+                pageMode.DataList = temp.ToList();
+                pageMode.TotalCount = BasicDal.Find(whereLambda).Count();
+                return pageMode;
+            }
+
+
+        }
+
+        #endregion
+
+        #region 大批量数据操作
+
+
+        public virtual void BulkInsert(IEnumerable<TEntity> entities)
+        {
+            using (var dbContextScope = _dbContextScopeFactory.Create())
+            {
+                BasicDal.BulkInsert(entities);
+                dbContextScope.SaveChanges();
+            }
+        }
+
+        public virtual void BulkDelete(IEnumerable<TEntity> entities)
+        {
+            using (var dbContextScope = _dbContextScopeFactory.Create())
+            {
+                BasicDal.BulkDelete(entities);
+                dbContextScope.SaveChanges();
+            }
+        }
+
+        public virtual void BulkUpdate(IEnumerable<TEntity> entities)
+        {
+            using (var dbContextScope = _dbContextScopeFactory.Create())
+            {
+                BasicDal.BulkUpdate(entities);
+                dbContextScope.SaveChanges();
             }
         }
 
         #endregion
+
+        /**
+         * AsNoTracking不追踪实体
+         * Any  判断是否存在
+         * 
+         */
+
+        #region 数据查询优化 AsNoTracking不追踪实体
+        public IList<TEntity> FindListAsNoTracking(Expression<Func<TEntity, bool>> whereLambda)
+        {
+            using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
+            {
+                return BasicDal.Find(whereLambda).AsNoTracking().ToList();
+            }
+        }
+
+
+        #endregion
+
+        #region 返回Query （必须在Context作用域）
+
+        public virtual IQueryable<TEntity> FindListAsQueryable(Expression<Func<TEntity, bool>> where)
+        {
+            using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
+            {
+                return BasicDal.Find(where);
+            }
+        }
+
+
+        #endregion
+
+        #region 不需要直接执行SQL语句 
+
+        /*
+     /// <summary>
+     /// 执行数据库语句 ExecuteSqlCommand
+     /// </summary>
+     /// <param name="sql"></param>
+     /// <param name="param"></param>
+     /// <returns></returns>
+     public virtual bool ExecuteSqlCommand(string sql, params object[] param)
+     {
+         using (var dbContextScope = _dbContextScopeFactory.Create())
+         {
+             return BasicDal.ExecuteSqlCommand(sql, param);
+         }
+     }
+     public virtual IList<TEntity> SqlQuery(string sql, params object[] param)
+     {
+         using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
+         {
+             return BasicDal.SqlQuery(sql, param).ToList();
+         }
+     }
+     */
+
+
+        #endregion
+
     }
 }

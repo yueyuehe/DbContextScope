@@ -3,6 +3,7 @@ using HWAdmin.Common.Config.AppStr;
 using HWAdmin.Entity.Base;
 using HWAdmin.Entity.Enum;
 using HWAdmin.Entity.System;
+using HWAdmin.IBLL.Base;
 using Mehdime.Entity.Extension;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,17 @@ namespace HWAdmin.BLL.Base
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TDbContext"></typeparam>
-    public abstract class ServiceBaseBLL<TEntity, TDbContext> : BasicBLL<TEntity, TDbContext> where TEntity : BaseEntity where TDbContext : DbContext
+    public abstract class ServiceBaseBLL<TEntity> : BasicBLL<TEntity>, IServiceBaseBLL<TEntity> where TEntity : BaseEntity
     {
         #region 账号
 
         private Account _account = null;
+
+
+        public ServiceBaseBLL(IBasicDAL<TEntity> dal) : base(dal)
+        {
+
+        }
 
         /// <summary>
         /// 当前用户
@@ -147,7 +154,7 @@ namespace HWAdmin.BLL.Base
         /// <param name="id"></param>
         public void DeleteLogic(string id)
         {
-            TEntity entity = Find(id);
+            TEntity entity = FindByID(id);
             DeleteLogic(entity);
         }
 
@@ -160,7 +167,7 @@ namespace HWAdmin.BLL.Base
             IList<TEntity> list = new List<TEntity>();
             foreach (var item in ids)
             {
-                list.Add(Find(item));
+                list.Add(FindByID(item));
             }
             DeleteLogic(list);
         }
@@ -195,7 +202,7 @@ namespace HWAdmin.BLL.Base
         /// <param name="id"></param>
         public void DeletePhysical(string id)
         {
-            TEntity entity = Find(id);
+            TEntity entity = FindByID(id);
             DeletePhysical(entity);
         }
 
@@ -209,11 +216,10 @@ namespace HWAdmin.BLL.Base
             IList<TEntity> list = new List<TEntity>();
             foreach (var item in ids)
             {
-                list.Add(Find(item));
+                list.Add(FindByID(item));
             }
             DeletePhysical(list);
         }
-
 
         #endregion
 

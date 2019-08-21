@@ -2,6 +2,7 @@
 using HWAdmin.DAL.System;
 using HWAdmin.Entity.System;
 using HWAdmin.IBLL.System;
+using HWAdmin.IDAL.System;
 using Mehdime.Entity.Extension;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace HWAdmin.BLL.System
     /// </summary>
     public class ActionAuthBLL : SysBaseBLL<ActionAuth>, IActionAuthBLL
     {
-        public ActionAuthBLL()
+        public ActionAuthBLL(IActionAuthDAL dal) : base(dal)
         {
-            basicDal = new ActionAuthDAL();
+
         }
     }
 }
